@@ -10,9 +10,15 @@ namespace PROGPOE.Classes
     {
         string name;
         double quantity;
-        string[] measurement_units = { "grams", "kilograms", "teaspoons", "tablespoons", "cups";
+        string[] measurement_units = { "grams", "kilograms", "teaspoons", "tablespoons", "cups" };
         string measurement_unit;
 
+        /// <summary>
+        /// Ingredient Object
+        /// </summary>
+        /// <param name="name">name of ingredient</param>
+        /// <param name="quantity">quantity of ingredients</param>
+        /// <param name="measurement_unit">measurement unit of ingredient</param>
         public Ingredient(string name, double quantity, string measurement_unit)
         {
             this.name = name;

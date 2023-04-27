@@ -12,6 +12,7 @@ namespace PROGPOE.Classes
         string[] step_details; //details of a step
         bool recipe_made = false; //if true recipe was made, if false no recipe
         Ingredient[] ingredients; //array of ingredients
+        Ingredient ingredient = new Ingredient("default", 0.0, "default unit");
 
         /// <summary>
         /// Displays menu to 1.Create recipe, 2.Scale Recipe, 3.Reset Values, 4.Clear Recipe, 5. Show Recipe
@@ -88,6 +89,87 @@ namespace PROGPOE.Classes
         /// </summary>
         public void CreateRecipe()
         {
+            string stringInput = string.Empty;
+            int intInput = 0;
+            do
+            {
+                Console.WriteLine("-------------------------------");
+                Console.WriteLine("Create Recipe");
+                Console.WriteLine("-------------------------------");
+                Console.WriteLine("Ingredients: ");
+                Console.WriteLine("-------------------------------");
+                Console.WriteLine("999 to exit");
+                Console.WriteLine("How many ingredients would you like to add?");
+                stringInput = Console.ReadLine();
+
+                try
+                {
+                    intInput = int.Parse (stringInput);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+                AddIngredients(intInput);
+            }
+            while (intInput != 999);
+                    
+        }
+
+        public void AddIngredients(int ingredientAmount)
+        {
+            string ingredientName = string.Empty;
+            double ingredientQuantity = 0;
+            int measurementUnit = 0;
+            string stringInput = string.Empty;
+
+
+
+            for (int i = 0; i < ingredientAmount; i++)
+            {
+               
+                Console.WriteLine("Ingredient " + (i+1));
+                Console.WriteLine("Enter Ingredient Name");
+                ingredientName = Console.ReadLine();
+                ingredient.setName(ingredientName);
+
+                Console.WriteLine("Enter Ingredient Measurement Unit");
+                Console.WriteLine("1. Grams");
+                Console.WriteLine("2. Kilograms");
+                Console.WriteLine("3. Teaspoons");
+                Console.WriteLine("4. Tablespoons");
+                Console.WriteLine("5. Cups");
+                stringInput = Console.ReadLine ();
+
+                try
+                {
+                    measurementUnit = int.Parse(stringInput);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                ingredient.setMeasurementUnit(measurementUnit);
+
+                Console.WriteLine("Enter Quantity of ingredient");
+                stringInput = Console.ReadLine () ;
+
+                try
+                {
+                    ingredientQuantity = Convert.ToDouble(stringInput);
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                ingredient.setQuantity(ingredientQuantity);
+
+                Ingredient addIngredient = new Ingredient(ingredient.getName(), ingredient.getQuantity(), ingredient.getMeasurementUnit());
+
+
+
+            }
         }
 
         /// <summary>
