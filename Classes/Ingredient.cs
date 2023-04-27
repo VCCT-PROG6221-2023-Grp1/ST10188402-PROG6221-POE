@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PROGPOE.Classes
 {
-    internal class Ingredient
+    public class Ingredient
     {
         string name;
         double quantity;
@@ -24,6 +24,7 @@ namespace PROGPOE.Classes
             this.name = name;
             this.quantity = quantity;
             this.measurement_unit = measurement_unit;
+
         }
 
         /// <summary>

@@ -9,11 +9,11 @@ namespace PROGPOE.Classes
     internal class Worker
     {
         static int MAX_STEPS = 15;
-        static int MAX_INGREDIENTS = 20;
+        static int ingredient_counter;
         static int step_counter = 0; //step counter
         string[] steps = new string[MAX_STEPS]; //details of a step
         bool recipe_made = false; //if true recipe was made, if false no recipe
-        Ingredient[] ingredients = new Ingredient[MAX_INGREDIENTS]; //array of ingredients
+        List<Ingredient> ingredients = new List<Ingredient>(); //array of ingredients
         Ingredient ingredient = new Ingredient("default", 0.0, "default unit");
 
         /// <summary>
@@ -112,12 +112,12 @@ namespace PROGPOE.Classes
                 {
                     Console.WriteLine(e.Message);
                 }
-
+                ingredient_counter = intInput;
                 AddIngredients(intInput);
                 AddSteps();
-                stringInput = "999";
+                intInput = 999;
             }
-            while (stringInput != "999");
+            while (intInput != 999);
                     
         }
 
@@ -179,12 +179,17 @@ namespace PROGPOE.Classes
                 try
                 {
                     measurementUnit = int.Parse(stringInput);
+                    if (measurementUnit > 5)
+                    {
+                        Console.WriteLine("Incorrect value");
+                    }
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                 }
                 ingredient.setMeasurementUnit(measurementUnit);
+                string measurementString = ingredient.getMeasurementUnit();
 
                 //gets quantity of ingredients
                 Console.WriteLine("Enter Quantity of ingredient");
@@ -201,9 +206,9 @@ namespace PROGPOE.Classes
                 ingredient.setQuantity(ingredientQuantity);
 
                 //creates ingredient object
-                Ingredient addIngredient = new Ingredient(ingredient.getName(), ingredient.getQuantity(), ingredient.getMeasurementUnit());
+                ingredients.Add(new Ingredient(ingredientName, ingredientQuantity, measurementString));
                 //ingredient object is added to array
-               // ingredients[i] = addIngredient;
+                
 
             
             }
@@ -239,6 +244,23 @@ namespace PROGPOE.Classes
         /// </summary>
         public void ShowRecipe()
         {
+            Console.WriteLine("\n------------------------");
+            Console.WriteLine("----------RECIPE------------");
+            Console.WriteLine("------------------------");
+            Console.WriteLine("--------Ingredients--------");
+            foreach (Ingredient ingredient in ingredients)
+            {
+                Console.WriteLine("- " + ingredient.getQuantity() + " " + ingredient.getMeasurementUnit() + " of " + ingredient.getName());
+                Console.WriteLine("\n");
+            }
+            Console.WriteLine("------------------------");
+            Console.WriteLine("------------Steps-----------");
+            for (int j = 0; j < step_counter; j++)
+            {
+                Console.WriteLine(steps[j]);
+                Console.WriteLine("\n");
+            }
+            Console.WriteLine("------------------------");
         }
     } 
 }
