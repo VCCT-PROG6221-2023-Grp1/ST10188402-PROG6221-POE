@@ -115,12 +115,15 @@ namespace PROGPOE.Classes
 
                 AddIngredients(intInput);
                 AddSteps();
+                stringInput = "999";
             }
-            while (intInput != 999);
+            while (stringInput != "999");
                     
         }
 
-
+        /// <summary>
+        /// Adds details of steps to steps array
+        /// </summary>
         public void AddSteps()
         {
             string userInput = string.Empty;
@@ -131,6 +134,11 @@ namespace PROGPOE.Classes
 
             while (!finish)
             {
+                //if user input is not equal to exit key then add more steps
+                if (userInput == "999")
+                {
+                    finish = true;
+                }
                 Console.WriteLine("Step" + (step_counter+1) + ": ");
                 userInput = Console.ReadLine();
                 steps[step_counter] = userInput;
