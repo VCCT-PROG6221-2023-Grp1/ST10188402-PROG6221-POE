@@ -10,6 +10,7 @@ namespace PROGPOE.Classes
     {
         string name;
         double quantity;
+        string[] measurement_units = { "grams", "kilograms", "teaspoons", "tablespoons", "cups";
         string measurement_unit;
 
         public Ingredient(string name, double quantity, string measurement_unit)
@@ -67,10 +68,10 @@ namespace PROGPOE.Classes
         /// <summary>
         /// Sets unit of measurement of ingredient
         /// </summary>
-        /// <param name="new_measurement_unit"></param>
-        public void setMeasurementUnit(string new_measurement_unit)
+        /// <param name="new_measurement_unit"> number entered to decide what unit</param>
+        public void setMeasurementUnit(int new_measurement_unit)
         {
-            measurement_unit = new_measurement_unit;
+            measurement_unit = measurement_units[new_measurement_unit-1]; 
         }
     }
 }

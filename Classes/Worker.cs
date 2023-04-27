@@ -22,9 +22,10 @@ namespace PROGPOE.Classes
             bool exit = false;
             do
             {
-                string stringInput = string.Empty;
-                int intInput = 0;
+                string stringInput = string.Empty; //declare variable for user input in string
+                int intInput = 0; //declare variable for user input to converted to int
 
+                //if no recipe is made application will automatically start recipe creation process
                 if (!recipe_made)
                 {
                     Console.WriteLine("Welcome to recipe app!");
@@ -32,6 +33,7 @@ namespace PROGPOE.Classes
                     CreateRecipe();
                 }
 
+                //Displays menu and stores user input
                 Console.WriteLine("Recipe App");
                 Console.WriteLine("---------------------------");
                 Console.WriteLine("1. Show Recipe");
@@ -39,18 +41,42 @@ namespace PROGPOE.Classes
                 Console.WriteLine("3. Reset Recipe Values");
                 Console.WriteLine("4. Clear Recipe");
                 Console.WriteLine("5. Create Recipe");
+                Console.WriteLine("6. Exit");
                 stringInput = Console.ReadLine();
 
                 try
                 {
-                    intInput = int.Parse(stringInput);
+                    intInput = int.Parse(stringInput); //converting user input to int
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e.Message);
+                    Console.WriteLine(e.Message); // if invalid character entered display error message
                 }
 
-
+                if (intInput == 1)
+                {
+                    ShowRecipe();   //calls show recipe method
+                }
+                else if (intInput == 2)
+                {
+                    ScaleRecipe();  //calls scale recipe method
+                }
+                else if (intInput == 3)
+                {
+                    ResetRecipe();  //calls reset recipe method
+                }
+                else if (intInput == 4)
+                {
+                    ClearRecipe (); //calls clear recipe method
+                }
+                else if (intInput == 5)
+                {
+                    CreateRecipe(); //calls create recipe method
+                }
+                else if (intInput == 6)
+                {
+                    exit = true; //exits application
+                }
 
             }
             while (!exit);
