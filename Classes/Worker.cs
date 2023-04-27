@@ -8,10 +8,12 @@ namespace PROGPOE.Classes
 {
     internal class Worker
     {
+        static int MAX_STEPS = 15;
+        static int MAX_INGREDIENTS = 20;
         static int step_counter = 0; //step counter
-        string[] step_details; //details of a step
+        string[] steps = new string[MAX_STEPS]; //details of a step
         bool recipe_made = false; //if true recipe was made, if false no recipe
-        Ingredient[] ingredients; //array of ingredients
+        Ingredient[] ingredients = new Ingredient[MAX_INGREDIENTS]; //array of ingredients
         Ingredient ingredient = new Ingredient("default", 0.0, "default unit");
 
         /// <summary>
@@ -104,7 +106,7 @@ namespace PROGPOE.Classes
 
                 try
                 {
-                    intInput = int.Parse (stringInput);
+                    intInput = int.Parse(stringInput);
                 }
                 catch (Exception e)
                 {
@@ -112,35 +114,59 @@ namespace PROGPOE.Classes
                 }
 
                 AddIngredients(intInput);
+                AddSteps();
             }
             while (intInput != 999);
                     
         }
 
+
+        public void AddSteps()
+        {
+            string userInput = string.Empty;
+            bool finish = false;
+            Console.WriteLine("------------------------");
+            Console.WriteLine("Provide the details to the steps");
+            Console.WriteLine("999 to finish------------------------");
+
+            while (!finish)
+            {
+                Console.WriteLine("Step" + (step_counter+1) + ": ");
+                userInput = Console.ReadLine();
+                steps[step_counter] = userInput;
+                step_counter++;
+            }
+        }
+
+        /// <summary>
+        /// Adds Ingredient information for each ingredient
+        /// </summary>
+        /// <param name="ingredientAmount">amount of ingredients being added</param>
         public void AddIngredients(int ingredientAmount)
         {
-            string ingredientName = string.Empty;
-            double ingredientQuantity = 0;
-            int measurementUnit = 0;
-            string stringInput = string.Empty;
 
+            string ingredientName = string.Empty; //stores ingredient name
+            double ingredientQuantity = 0; //stores ingredient quantity
+            int measurementUnit = 0; //stores measurement unit
+            string stringInput = string.Empty; //gets user Input in string
 
-
+            //for each ingredient get its name, the unit of measurement and quantity of ingredient
             for (int i = 0; i < ingredientAmount; i++)
             {
-               
-                Console.WriteLine("Ingredient " + (i+1));
+                //gets ingredient name
+                Console.WriteLine("Ingredient " + (i + 1));
                 Console.WriteLine("Enter Ingredient Name");
                 ingredientName = Console.ReadLine();
                 ingredient.setName(ingredientName);
 
+                //gets ingredient measurement unit
                 Console.WriteLine("Enter Ingredient Measurement Unit");
                 Console.WriteLine("1. Grams");
                 Console.WriteLine("2. Kilograms");
                 Console.WriteLine("3. Teaspoons");
                 Console.WriteLine("4. Tablespoons");
                 Console.WriteLine("5. Cups");
-                stringInput = Console.ReadLine ();
+                stringInput = Console.ReadLine();
 
                 try
                 {
@@ -152,23 +178,26 @@ namespace PROGPOE.Classes
                 }
                 ingredient.setMeasurementUnit(measurementUnit);
 
+                //gets quantity of ingredients
                 Console.WriteLine("Enter Quantity of ingredient");
-                stringInput = Console.ReadLine () ;
+                stringInput = Console.ReadLine();
 
                 try
                 {
                     ingredientQuantity = Convert.ToDouble(stringInput);
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                 }
                 ingredient.setQuantity(ingredientQuantity);
 
+                //creates ingredient object
                 Ingredient addIngredient = new Ingredient(ingredient.getName(), ingredient.getQuantity(), ingredient.getMeasurementUnit());
+                //ingredient object is added to array
+               // ingredients[i] = addIngredient;
 
-
-
+            
             }
         }
 
