@@ -168,7 +168,9 @@ namespace PROGPOE.Classes
             for (int i = 0; i < ingredientAmount; i++)
             {
                 //gets ingredient name
+                Console.WriteLine("-------------------------------");
                 Console.WriteLine("Ingredient " + (i + 1));
+                Console.WriteLine("-------------------------------");
                 Console.WriteLine("Enter Ingredient Name");
                 ingredientName = Console.ReadLine();
                 ingredient.setName(ingredientName);
@@ -286,7 +288,12 @@ namespace PROGPOE.Classes
         /// </summary>
         public void ResetRecipe()
         {
-
+            int i = 0;
+            foreach (Ingredient ingredient in ingredients)
+            {
+                ingredient.setQuantity(original_ingredient_val[i]);
+                i++;
+            }
         }
 
         /// <summary>
