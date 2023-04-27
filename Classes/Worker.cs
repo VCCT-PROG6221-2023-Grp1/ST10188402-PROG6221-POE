@@ -9,12 +9,14 @@ namespace PROGPOE.Classes
     internal class Worker
     {
         static int MAX_STEPS = 15;
+        static int MAX_INGREDIENTS = 15;
         static int ingredient_counter;
         static int step_counter = 0; //step counter
         string[] steps = new string[MAX_STEPS]; //details of a step
         bool recipe_made = false; //if true recipe was made, if false no recipe
         List<Ingredient> ingredients = new List<Ingredient>(); //array of ingredients
         Ingredient ingredient = new Ingredient("default", 0.0, "default unit");
+        double[] original_ingredient_val = new double[MAX_INGREDIENTS];
 
         /// <summary>
         /// Displays menu to 1.Create recipe, 2.Scale Recipe, 3.Reset Values, 4.Clear Recipe, 5. Show Recipe
@@ -208,6 +210,7 @@ namespace PROGPOE.Classes
                     Console.WriteLine(e.Message);
                 }
                 ingredient.setQuantity(ingredientQuantity);
+                original_ingredient_val[i] = ingredientQuantity;
 
                 //creates ingredient object
                 ingredients.Add(new Ingredient(ingredientName, ingredientQuantity, measurementString));
@@ -223,11 +226,60 @@ namespace PROGPOE.Classes
         /// --TO DO--
         /// </summary>
         public void ScaleRecipe()
-        {
+        {   
+            bool finish = false;
+            int userInput = 0;
+            Console.WriteLine("\n------------------------------");
+            Console.WriteLine("Scale Recipe");
+            Console.WriteLine("-------------------------------");
+            Console.WriteLine("1. half amounts");
+            Console.WriteLine("2. double amounts");
+            Console.WriteLine("3. triple amounts");
+
+            //prompt for user input until correct value is entered
+            do
+            { 
+
+                try
+                {
+                userInput = int.Parse(Console.ReadLine()); //stores user input
+                }
+                catch(Exception e)
+                { 
+                Console.WriteLine(e.Message);
+                }
+
+            
+                //if user input = 1 half quantity
+                if (userInput == 1)
+                {
+                    ingredient.setQuantity(ingredient.getQuantity() / 2);
+
+                }
+
+                //if user input = 2 double quantity
+                else if (userInput == 2)
+                {
+                    ingredient.setQuantity(ingredient.getQuantity() * 2);
+
+                }
+
+                //if user input = 3 triple quantity
+                else if (userInput == 3)
+                {
+                    ingredient.setQuantity(ingredient.getQuantity() * 3);
+
+                }
+                else
+                {
+                    Console.WriteLine("Incorrect value entered");
+                }
+            }
+            while (finish);
         }
 
         /// <summary>
-        /// Resets value of recipe to original
+        /// Resets value of recipe to original values
         /// --TO DO--
         /// </summary>
         public void ResetRecipe()
