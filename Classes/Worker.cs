@@ -236,6 +236,7 @@ namespace PROGPOE.Classes
         /// </summary>
         public void ClearRecipe()
         {
+            ingredients.Clear(); //clears recipe
         }
 
         /// <summary>
@@ -244,21 +245,25 @@ namespace PROGPOE.Classes
         /// </summary>
         public void ShowRecipe()
         {
+
             Console.WriteLine("\n------------------------");
             Console.WriteLine("----------RECIPE------------");
             Console.WriteLine("------------------------");
             Console.WriteLine("--------Ingredients--------");
+
+            //for every ingredient in ingredients[] print out ingredient details
             foreach (Ingredient ingredient in ingredients)
             {
-                Console.WriteLine("- " + ingredient.getQuantity() + " " + ingredient.getMeasurementUnit() + " of " + ingredient.getName());
-                Console.WriteLine("\n");
+                Console.WriteLine("- " + ingredient.getQuantity() + " " + ingredient.getMeasurementUnit() 
+                    + " of " + ingredient.getName());
             }
+
             Console.WriteLine("------------------------");
             Console.WriteLine("------------Steps-----------");
+            //for every step print its details
             for (int j = 0; j < step_counter; j++)
             {
-                Console.WriteLine(steps[j]);
-                Console.WriteLine("\n");
+                Console.WriteLine("Step " + (j+1) + "\n" + steps[j]);
             }
             Console.WriteLine("------------------------");
         }
