@@ -249,30 +249,32 @@ namespace PROGPOE.Classes
                 Console.WriteLine(e.Message);
                 }
 
-            
-                //if user input = 1 half quantity
-                if (userInput == 1)
+                foreach (Ingredient ingredient in ingredients)
                 {
-                    ingredient.setQuantity(ingredient.getQuantity() / 2);
+                    //if user input = 1 half quantity
+                    if (userInput == 1)
+                    {
+                        ingredient.setQuantity(ingredient.getQuantity() / 2);
 
-                }
+                    }
 
-                //if user input = 2 double quantity
-                else if (userInput == 2)
-                {
-                    ingredient.setQuantity(ingredient.getQuantity() * 2);
+                    //if user input = 2 double quantity
+                    else if (userInput == 2)
+                    {
+                        ingredient.setQuantity(ingredient.getQuantity() * 2);
 
-                }
+                    }
 
-                //if user input = 3 triple quantity
-                else if (userInput == 3)
-                {
-                    ingredient.setQuantity(ingredient.getQuantity() * 3);
+                    //if user input = 3 triple quantity
+                    else if (userInput == 3)
+                    {
+                        ingredient.setQuantity(ingredient.getQuantity() * 3);
 
-                }
-                else
-                {
-                    Console.WriteLine("Incorrect value entered");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Incorrect value entered");
+                    }
                 }
             }
             while (finish);
@@ -284,6 +286,7 @@ namespace PROGPOE.Classes
         /// </summary>
         public void ResetRecipe()
         {
+
         }
 
         /// <summary>
