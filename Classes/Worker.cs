@@ -34,6 +34,7 @@ namespace PROGPOE.Classes
                     Console.WriteLine("Welcome to recipe app!");
                     Console.WriteLine("-------------------------------");
                     CreateRecipe();
+                    recipe_made = true;
                 }
 
                 //Displays menu and stores user input
@@ -95,12 +96,13 @@ namespace PROGPOE.Classes
             int intInput = 0;
             do
             {
-                Console.WriteLine("-------------------------------");
+                Console.WriteLine("\n-------------------------------");
                 Console.WriteLine("Create Recipe");
                 Console.WriteLine("-------------------------------");
-                Console.WriteLine("Ingredients: ");
+                Console.WriteLine("999 to exit ");
                 Console.WriteLine("-------------------------------");
-                Console.WriteLine("999 to exit");
+                Console.WriteLine("Ingredients:");
+                Console.WriteLine("-------------------------------");
                 Console.WriteLine("How many ingredients would you like to add?");
                 stringInput = Console.ReadLine();
 
@@ -128,16 +130,18 @@ namespace PROGPOE.Classes
         {
             string userInput = string.Empty;
             bool finish = false;
-            Console.WriteLine("------------------------");
+            Console.WriteLine("\n------------------------");
             Console.WriteLine("Provide the details to the steps");
-            Console.WriteLine("999 to finish------------------------");
-
+            Console.WriteLine("-------------------------------");
+            Console.WriteLine("999 to exit");
+            Console.WriteLine("-------------------------------");
             while (!finish)
             {
                 //if user input is not equal to exit key then add more steps
                 if (userInput == "999")
                 {
                     finish = true;
+                    break;
                 }
                 Console.WriteLine("Step" + (step_counter+1) + ": ");
                 userInput = Console.ReadLine();
@@ -237,6 +241,7 @@ namespace PROGPOE.Classes
         public void ClearRecipe()
         {
             ingredients.Clear(); //clears recipe
+            recipe_made = false;
         }
 
         /// <summary>
