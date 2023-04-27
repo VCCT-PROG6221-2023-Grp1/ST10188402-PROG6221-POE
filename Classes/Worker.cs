@@ -19,6 +19,41 @@ namespace PROGPOE.Classes
         /// </summary>
         public void Menu()
         {
+            bool exit = false;
+            do
+            {
+                string stringInput = string.Empty;
+                int intInput = 0;
+
+                if (!recipe_made)
+                {
+                    Console.WriteLine("Welcome to recipe app!");
+                    Console.WriteLine("-------------------------------");
+                    CreateRecipe();
+                }
+
+                Console.WriteLine("Recipe App");
+                Console.WriteLine("---------------------------");
+                Console.WriteLine("1. Show Recipe");
+                Console.WriteLine("2. Scale Recipe");
+                Console.WriteLine("3. Reset Recipe Values");
+                Console.WriteLine("4. Clear Recipe");
+                Console.WriteLine("5. Create Recipe");
+                stringInput = Console.ReadLine();
+
+                try
+                {
+                    intInput = int.Parse(stringInput);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+
+
+            }
+            while (!exit);
         }
 
         /// <summary>
@@ -60,6 +95,6 @@ namespace PROGPOE.Classes
         public void ShowRecipe()
         {
         }
-    
+    } 
 }
 //______________________________---------------------------> End of File <---------------------------______________________________

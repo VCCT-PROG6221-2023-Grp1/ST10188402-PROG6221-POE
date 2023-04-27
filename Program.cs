@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PROGPOE.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,8 @@ namespace PROGPOE
     {
         static void Main(string[] args)
         {
+            Worker work = new Worker();
+            work.Menu();
         }
     }
 }
