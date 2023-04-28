@@ -97,25 +97,27 @@ namespace PROGPOE.Classes
         {
             string stringInput = string.Empty;
             int intInput = 0;
-                Console.WriteLine("\n-------------------------------");
-                Console.WriteLine("Create Recipe");
-                Console.WriteLine("-------------------------------");
-                Console.WriteLine("Ingredients:");
-                Console.WriteLine("-------------------------------");
-                Console.WriteLine("How many ingredients would you like to add?");
-                stringInput = Console.ReadLine();
+            Console.WriteLine("\n-------------------------------");
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.WriteLine("Create Recipe");
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.WriteLine("-------------------------------");
+            Console.WriteLine("Ingredients:");
+            Console.WriteLine("-------------------------------");
+            Console.WriteLine("How many ingredients would you like to add?");
+            stringInput = Console.ReadLine();
 
-                try
-                {
-                    intInput = int.Parse(stringInput);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-                ingredient_counter = intInput;
-                AddIngredients(intInput);
-                AddSteps();
+            try
+            {
+                intInput = int.Parse(stringInput);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            ingredient_counter = intInput;
+            AddIngredients(intInput);
+            AddSteps();
                     
         }
 
@@ -179,6 +181,7 @@ namespace PROGPOE.Classes
                 Console.WriteLine("3. Teaspoons");
                 Console.WriteLine("4. Tablespoons");
                 Console.WriteLine("5. Cups");
+                Console.WriteLine("-------------------------------");
                 stringInput = Console.ReadLine();
 
                 try
@@ -295,8 +298,37 @@ namespace PROGPOE.Classes
         /// </summary>
         public void ClearRecipe()
         {
+            int intInput = 0;
+            bool valid = false;
+            Console.WriteLine("-------------------------------");
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.WriteLine("Create Recipe");
+            Console.BackgroundColor = ConsoleColor.Black;
+            do
+            {
+                Console.WriteLine("-------------------------------");
+                Console.WriteLine("Would you like to clear recipe?");
+                Console.WriteLine("1. Yes");
+                Console.WriteLine("2. No");
+
+                try
+                {
+                    intInput = int.Parse(Console.ReadLine());
+                }
+                catch
+                {
+                    Console.WriteLine("Incorrect Value entered");
+                }
+                if(intInput == 1 || intInput == 2)
+                {
+                    valid = true;
+                }
+            } 
+            while (!valid);
+            if (intInput == 1) { 
             ingredients.Clear(); //clears recipe
             recipe_made = false;
+            }
         }
 
         /// <summary>
