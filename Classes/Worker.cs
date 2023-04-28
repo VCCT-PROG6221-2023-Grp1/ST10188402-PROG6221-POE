@@ -42,6 +42,7 @@ namespace PROGPOE.Classes
                 }
 
                 //Displays menu and stores user input
+                Console.WriteLine("\n---------------------------");
                 Console.WriteLine("Recipe App");
                 Console.WriteLine("---------------------------");
                 Console.WriteLine("1. Show Recipe");
@@ -78,10 +79,6 @@ namespace PROGPOE.Classes
                     ClearRecipe (); //calls clear recipe method
                 }
                 else if (intInput == 5)
-                {
-                    CreateRecipe(); //calls create recipe method
-                }
-                else if (intInput == 6)
                 {
                     exit = true; //exits application
                 }
@@ -171,13 +168,17 @@ namespace PROGPOE.Classes
                 Console.WriteLine("-------------------------------");
                 Console.WriteLine("Ingredient " + (i + 1));
                 Console.WriteLine("-------------------------------");
+                Console.BackgroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Enter Ingredient Name");
+                Console.BackgroundColor = ConsoleColor.Black;
                 ingredientName = Console.ReadLine();
                 ingredient.setName(ingredientName);
 
                 //gets ingredient measurement unit
                 Console.WriteLine("-------------------------------");
+                Console.BackgroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Enter Ingredient Measurement Unit");
+                Console.BackgroundColor = ConsoleColor.Black;
                 Console.WriteLine("1. Grams");
                 Console.WriteLine("2. Kilograms");
                 Console.WriteLine("3. Teaspoons");
@@ -232,7 +233,9 @@ namespace PROGPOE.Classes
             bool finish = false;
             int userInput = 0;
             Console.WriteLine("\n------------------------------");
+            Console.BackgroundColor = ConsoleColor.Blue;
             Console.WriteLine("Scale Recipe");
+            Console.BackgroundColor = ConsoleColor.Black;
             Console.WriteLine("-------------------------------");
             Console.WriteLine("1. half amounts");
             Console.WriteLine("2. double amounts");
