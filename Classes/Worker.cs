@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,13 +9,13 @@ namespace PROGPOE.Classes
 {
     internal class Worker
     {
-        static int MAX_STEPS = 20;
-        static int MAX_INGREDIENTS = 20;
+        static int MAX_STEPS = 15; //maximum steps
+        static int MAX_INGREDIENTS = 20; //maximum ingredients
         static int ingredient_counter;
         static int step_counter = 0; //step counter
         string[] steps = new string[MAX_STEPS]; //details of a step
         bool recipe_made = false; //if true recipe was made, if false no recipe
-        List<Ingredient> ingredients = new List<Ingredient>(); //array of ingredients
+        List<Ingredient> ingredients = new List<Ingredient>(); //list of ingredients
         Ingredient ingredient = new Ingredient("default", 0.0, "default unit");
         double[] original_ingredient_val = new double[MAX_INGREDIENTS];
 
@@ -96,12 +97,8 @@ namespace PROGPOE.Classes
         {
             string stringInput = string.Empty;
             int intInput = 0;
-            do
-            {
                 Console.WriteLine("\n-------------------------------");
                 Console.WriteLine("Create Recipe");
-                Console.WriteLine("-------------------------------");
-                Console.WriteLine("999 to exit ");
                 Console.WriteLine("-------------------------------");
                 Console.WriteLine("Ingredients:");
                 Console.WriteLine("-------------------------------");
@@ -119,9 +116,6 @@ namespace PROGPOE.Classes
                 ingredient_counter = intInput;
                 AddIngredients(intInput);
                 AddSteps();
-                intInput = 999;
-            }
-            while (intInput != 999);
                     
         }
 
@@ -130,21 +124,23 @@ namespace PROGPOE.Classes
         /// </summary>
         public void AddSteps()
         {
+            int intInput = 0;
             string userInput = string.Empty;
-            bool finish = false;
             Console.WriteLine("\n------------------------");
-            Console.WriteLine("Provide the details to the steps");
+            Console.WriteLine("How many steps would you like to add? (< 15)"); //prompts user for how many steps they would want
             Console.WriteLine("-------------------------------");
-            Console.WriteLine("999 to finish");
-            Console.WriteLine("-------------------------------");
-            while (!finish)
+            try 
+            { 
+            intInput = int.Parse(Console.ReadLine());
+            }
+            catch(Exception e) 
             {
-                //if user input is not equal to exit key then add more steps
-                if (userInput == "999")
-                {
-                    finish = true;
-                    break;
-                }
+                Console.WriteLine(e.Message);
+            }
+
+            //adds a step and saves the details in steps[]
+            for (int i = 0; i < intInput; i++)
+            {
                 Console.WriteLine("-------------------------------");
                 Console.WriteLine("Step " + (step_counter+1) + ": ");
                 userInput = Console.ReadLine();
@@ -215,10 +211,8 @@ namespace PROGPOE.Classes
                 ingredient.setQuantity(ingredientQuantity);
                 original_ingredient_val[i] = ingredientQuantity;
 
-                //creates ingredient object
-                ingredients.Add(new Ingredient(ingredientName, ingredientQuantity, measurementString));
-                MeasurementUnitCheck(measurementString, ingredientQuantity);
-                
+                //creates ingredient object and adds it to list
+                ingredients.Add(new Ingredient(ingredientName, ingredientQuantity, measurementString));                
 
             
             }
@@ -258,21 +252,18 @@ namespace PROGPOE.Classes
                     if (userInput == 1)
                     {
                         ingredient.setQuantity(ingredient.getQuantity() / 2);
-                        MeasurementUnitCheck(ingredient.getMeasurementUnit(), ingredient.getQuantity());
                     }
 
                     //if user input = 2 double quantity
                     else if (userInput == 2)
                     {
                         ingredient.setQuantity(ingredient.getQuantity() * 2);
-                        MeasurementUnitCheck(ingredient.getMeasurementUnit(), ingredient.getQuantity());
                     }
 
                     //if user input = 3 triple quantity
                     else if (userInput == 3)
                     {
                         ingredient.setQuantity(ingredient.getQuantity() * 3);
-                        MeasurementUnitCheck(ingredient.getMeasurementUnit(), ingredient.getQuantity());
                     }
                     else
                     {
@@ -281,66 +272,6 @@ namespace PROGPOE.Classes
                 }
             }
             while (finish);
-        }
-
-        /// <summary>
-        /// Checks Measurement unit and returns whether the unit should go down one or up 1
-        /// </summary>
-        /// <param name="Measurement">measurement unit</param>
-        /// <param name="quantity">quantity of ingredient</param>
-        /// <returns></returns>
-        public void MeasurementUnitCheck(string Measurement, double quantity)
-        {
-            
-            //if measurement unit is = grams and the quantity of grams is greater than 1000 convert to kilograms
-            if (Measurement.Equals(ingredient.measurement_units[0])) 
-            {
-                if (quantity > 1000)
-                {
-                    ingredient.setMeasurementUnit(1);
-                }
-            }
-            //if measurement unit is = kilograms and the quantity of grams is less than 1 convert to grams
-            else if (Measurement.Equals(ingredient.measurement_units[1]))
-            {
-                if (quantity < 1)
-                {
-                    ingredient.setMeasurementUnit(0);
-                }
-            }
-            //if measurement unit is = teaspoons and the quantity of teaspoons is greater than 3 convert to tablespoons
-            else if (Measurement.Equals(ingredient.measurement_units[2]))
-            {
-                if (quantity > 3)
-                {
-                    ingredient.setMeasurementUnit(3);
-                }
-            }
-            //if measurement unit is = tablespoons and the quantity of tablespoons is less than 1 convert to teaspoons
-            else if (Measurement.Equals(ingredient.measurement_units[3]))
-            {
-                if (quantity < 1)
-                {
-                    ingredient.setMeasurementUnit(2);
-                }
-            }
-            //if measurement unit is = tablespoons and the quantity of tablespoons is greater than 16 convert to cups
-            else if (Measurement.Equals(ingredient.measurement_units[3]))
-            {
-                if (quantity > 16)
-                {
-                    ingredient.setMeasurementUnit(4);
-                }
-            }
-            //if measurement unit is = cups and the quantity of cups is less than 1 convert to kilograms
-            else if (Measurement.Equals(ingredient.measurement_units[4]))
-            {
-                if (quantity < 1)
-                {
-                    ingredient.setMeasurementUnit(3);
-                }
-            }
-
         }
 
         /// <summary>
