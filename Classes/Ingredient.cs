@@ -10,7 +10,7 @@ namespace PROGPOE.Classes
     {
         string name;
         double quantity;
-        string[] measurement_units = { "grams", "kilograms", "teaspoons", "tablespoons", "cups" };
+        public string[] measurement_units = { "grams", "kilograms", "teaspoons", "tablespoons", "cups" };
         string measurement_unit;
 
         /// <summary>
@@ -82,4 +82,4 @@ namespace PROGPOE.Classes
         }
     }
 }
-//______________________________---------------------------> End of File <---------------------------______________________________
+//______________________________0---------------------------> End of File <---------------------------0______________________________

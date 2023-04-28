@@ -8,8 +8,8 @@ namespace PROGPOE.Classes
 {
     internal class Worker
     {
-        static int MAX_STEPS = 15;
-        static int MAX_INGREDIENTS = 15;
+        static int MAX_STEPS = 20;
+        static int MAX_INGREDIENTS = 20;
         static int ingredient_counter;
         static int step_counter = 0; //step counter
         string[] steps = new string[MAX_STEPS]; //details of a step
@@ -135,7 +135,7 @@ namespace PROGPOE.Classes
             Console.WriteLine("\n------------------------");
             Console.WriteLine("Provide the details to the steps");
             Console.WriteLine("-------------------------------");
-            Console.WriteLine("999 to exit");
+            Console.WriteLine("999 to finish");
             Console.WriteLine("-------------------------------");
             while (!finish)
             {
@@ -145,7 +145,8 @@ namespace PROGPOE.Classes
                     finish = true;
                     break;
                 }
-                Console.WriteLine("Step" + (step_counter+1) + ": ");
+                Console.WriteLine("-------------------------------");
+                Console.WriteLine("Step " + (step_counter+1) + ": ");
                 userInput = Console.ReadLine();
                 steps[step_counter] = userInput;
                 step_counter++;
@@ -216,7 +217,7 @@ namespace PROGPOE.Classes
 
                 //creates ingredient object
                 ingredients.Add(new Ingredient(ingredientName, ingredientQuantity, measurementString));
-                //ingredient object is added to array
+                MeasurementUnitCheck(measurementString, ingredientQuantity);
                 
 
             
@@ -257,21 +258,21 @@ namespace PROGPOE.Classes
                     if (userInput == 1)
                     {
                         ingredient.setQuantity(ingredient.getQuantity() / 2);
-
+                        MeasurementUnitCheck(ingredient.getMeasurementUnit(), ingredient.getQuantity());
                     }
 
                     //if user input = 2 double quantity
                     else if (userInput == 2)
                     {
                         ingredient.setQuantity(ingredient.getQuantity() * 2);
-
+                        MeasurementUnitCheck(ingredient.getMeasurementUnit(), ingredient.getQuantity());
                     }
 
                     //if user input = 3 triple quantity
                     else if (userInput == 3)
                     {
                         ingredient.setQuantity(ingredient.getQuantity() * 3);
-
+                        MeasurementUnitCheck(ingredient.getMeasurementUnit(), ingredient.getQuantity());
                     }
                     else
                     {
@@ -283,12 +284,73 @@ namespace PROGPOE.Classes
         }
 
         /// <summary>
+        /// Checks Measurement unit and returns whether the unit should go down one or up 1
+        /// </summary>
+        /// <param name="Measurement">measurement unit</param>
+        /// <param name="quantity">quantity of ingredient</param>
+        /// <returns></returns>
+        public void MeasurementUnitCheck(string Measurement, double quantity)
+        {
+            
+            //if measurement unit is = grams and the quantity of grams is greater than 1000 convert to kilograms
+            if (Measurement.Equals(ingredient.measurement_units[0])) 
+            {
+                if (quantity > 1000)
+                {
+                    ingredient.setMeasurementUnit(1);
+                }
+            }
+            //if measurement unit is = kilograms and the quantity of grams is less than 1 convert to grams
+            else if (Measurement.Equals(ingredient.measurement_units[1]))
+            {
+                if (quantity < 1)
+                {
+                    ingredient.setMeasurementUnit(0);
+                }
+            }
+            //if measurement unit is = teaspoons and the quantity of teaspoons is greater than 3 convert to tablespoons
+            else if (Measurement.Equals(ingredient.measurement_units[2]))
+            {
+                if (quantity > 3)
+                {
+                    ingredient.setMeasurementUnit(3);
+                }
+            }
+            //if measurement unit is = tablespoons and the quantity of tablespoons is less than 1 convert to teaspoons
+            else if (Measurement.Equals(ingredient.measurement_units[3]))
+            {
+                if (quantity < 1)
+                {
+                    ingredient.setMeasurementUnit(2);
+                }
+            }
+            //if measurement unit is = tablespoons and the quantity of tablespoons is greater than 16 convert to cups
+            else if (Measurement.Equals(ingredient.measurement_units[3]))
+            {
+                if (quantity > 16)
+                {
+                    ingredient.setMeasurementUnit(4);
+                }
+            }
+            //if measurement unit is = cups and the quantity of cups is less than 1 convert to kilograms
+            else if (Measurement.Equals(ingredient.measurement_units[4]))
+            {
+                if (quantity < 1)
+                {
+                    ingredient.setMeasurementUnit(3);
+                }
+            }
+
+        }
+
+        /// <summary>
         /// Resets value of recipe to original values
         /// --TO DO--
         /// </summary>
         public void ResetRecipe()
         {
-            int i = 0;
+            int i = 0; //counter 
+            //for each ingredient reset its value to original
             foreach (Ingredient ingredient in ingredients)
             {
                 ingredient.setQuantity(original_ingredient_val[i]);
@@ -330,10 +392,10 @@ namespace PROGPOE.Classes
             //for every step print its details
             for (int j = 0; j < step_counter; j++)
             {
-                Console.WriteLine("Step " + (j+1) + "\n" + steps[j]);
+                Console.WriteLine("Step " + (j+1) + ":\n" + steps[j]);
             }
             Console.WriteLine("------------------------");
         }
     } 
 }
-//______________________________---------------------------> End of File <---------------------------______________________________
+//______________________________0---------------------------> End of File <---------------------------0______________________________
