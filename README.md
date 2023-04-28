@@ -8,6 +8,7 @@ This application creates recipes by acquiring the steps and ingredients(name of 
 -After the user will be prompted to enter how many steps the recipe will require and then fill the details for each step
 
 -The user will then be show a menu with 6 options:
+  
   -1. Show Recipe
       - This will print the recipe above the menu
       
