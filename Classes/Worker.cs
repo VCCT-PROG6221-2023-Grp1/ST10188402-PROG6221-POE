@@ -34,6 +34,7 @@ namespace PROGPOE.Classes
                 //if no recipe is made application will automatically start recipe creation process
                 if (!recipe_made)
                 {
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("Welcome to recipe app!");
                     Console.WriteLine("-------------------------------");
                     CreateRecipe();
@@ -175,6 +176,7 @@ namespace PROGPOE.Classes
                 ingredient.setName(ingredientName);
 
                 //gets ingredient measurement unit
+                Console.WriteLine("-------------------------------");
                 Console.WriteLine("Enter Ingredient Measurement Unit");
                 Console.WriteLine("1. Grams");
                 Console.WriteLine("2. Kilograms");
@@ -304,6 +306,7 @@ namespace PROGPOE.Classes
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.WriteLine("Create Recipe");
             Console.BackgroundColor = ConsoleColor.Black;
+            //prompt user to find out whether they want to clear recipe
             do
             {
                 Console.WriteLine("-------------------------------");
@@ -319,14 +322,20 @@ namespace PROGPOE.Classes
                 {
                     Console.WriteLine("Incorrect Value entered");
                 }
+                //if input is 1 or 2 the input is valid and the loop is exited
                 if(intInput == 1 || intInput == 2)
                 {
                     valid = true;
+                }
+                else
+                {
+                    Console.WriteLine("Incorrect Value entered");
                 }
             } 
             while (!valid);
             if (intInput == 1) { 
             ingredients.Clear(); //clears recipe
+            step_counter = 0;
             recipe_made = false;
             }
         }
@@ -339,7 +348,9 @@ namespace PROGPOE.Classes
         {
 
             Console.WriteLine("\n------------------------");
+            Console.BackgroundColor = ConsoleColor.Blue;
             Console.WriteLine("----------RECIPE------------");
+            Console.BackgroundColor = ConsoleColor.Black;
             Console.WriteLine("------------------------");
             Console.WriteLine("--------Ingredients--------");
 
