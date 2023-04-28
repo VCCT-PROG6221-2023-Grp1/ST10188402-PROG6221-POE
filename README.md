@@ -9,16 +9,16 @@ This application creates recipes by acquiring the steps and ingredients(name of 
 
 -The user will then be show a menu with 6 options:
   -1. Show Recipe
-      \n This will print the recipe above the menu
+      - This will print the recipe above the menu
       
   -2. Scale Recipe
-      \n This will show a new menu that allows the user to either halve, double or triple the quantity of ingredients and when a choice is made it will return to               previous menu
+      - This will show a new menu that allows the user to either halve, double or triple the quantity of ingredients and when a choice is made it will return to               previous menu
       
   -3. Reset Recipe Values
-      \n This resets the quantities of ingredients back to what they were set to originally 
+      - This resets the quantities of ingredients back to what they were set to originally 
   
   -4. Clear Recipe
-      \n This first asks the user if they are sure to clear recipe data and if user enters yes option all recipe data is cleared and the application will then act as if           no recipe was ever created
+      - This first asks the user if they are sure to clear recipe data and if user enters yes option all recipe data is cleared and the application will then act as if           no recipe was ever created
       
   -5. Exit
       \n exits application
