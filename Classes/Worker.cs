@@ -14,7 +14,6 @@ namespace PROGPOE.Classes
         static int ingredient_counter;
         static int step_counter = 0; //step counter
         string[] steps = new string[MAX_STEPS]; //details of a step
-        bool recipe_made = false; //if true recipe was made, if false no recipe
         List<Ingredient> ingredients = new List<Ingredient>(); //list of ingredients
         Ingredient ingredient = new Ingredient("default", 0.0, "default unit");
         double[] original_ingredient_val = new double[MAX_INGREDIENTS];
@@ -30,16 +29,6 @@ namespace PROGPOE.Classes
             {
                 string stringInput = string.Empty; //declare variable for user input in string
                 int intInput = 0; //declare variable for user input to converted to int
-
-                //if no recipe is made application will automatically start recipe creation process
-                if (!recipe_made)
-                {
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("Welcome to recipe app!");
-                    Console.WriteLine("-------------------------------");
-                    CreateRecipe();
-                    recipe_made = true;
-                }
 
                 //Displays menu and stores user input
                 Console.WriteLine("\n---------------------------");
@@ -339,7 +328,6 @@ namespace PROGPOE.Classes
             if (intInput == 1) { 
             ingredients.Clear(); //clears recipe
             step_counter = 0;
-            recipe_made = false;
             }
         }
 
