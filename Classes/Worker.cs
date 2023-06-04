@@ -11,8 +11,10 @@ namespace PROGPOE.Classes
     {
         static int ingredient_counter;
         static int step_counter = 0; //step counter
+        static int totalCalories = 0;
         List<Ingredient> ingredients = new List<Ingredient>(); //list of ingredients
         List<Step> steps = new List<Step>(); //list of step descriptions
+        List<Recipe> recipes = new List<Recipe>();
         Ingredient ingredient = new Ingredient("default", 0.0, "default unit", "default", 0);
 
         /// <summary>
@@ -31,7 +33,7 @@ namespace PROGPOE.Classes
                 Console.WriteLine("\n---------------------------");
                 Console.WriteLine("Recipe App");
                 Console.WriteLine("---------------------------");
-                Console.WriteLine("1. Show Recipe");
+                Console.WriteLine("1. Show A Recipe");
                 Console.WriteLine("2. Scale Recipe");
                 Console.WriteLine("3. Reset Recipe Values");
                 Console.WriteLine("4. Clear Recipe");
@@ -84,11 +86,15 @@ namespace PROGPOE.Classes
         public void CreateRecipe()
         {
             string stringInput = string.Empty;
+            string name = string.Empty;
             int intInput = 0;
             Console.WriteLine("\n-------------------------------");
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.WriteLine("Create Recipe");
             Console.BackgroundColor = ConsoleColor.Black;
+            Console.WriteLine("-------------------------------");
+            Console.WriteLine("Name:");
+            stringInput = Console.ReadLine();
             Console.WriteLine("-------------------------------");
             Console.WriteLine("Ingredients:");
             Console.WriteLine("-------------------------------");
@@ -105,7 +111,9 @@ namespace PROGPOE.Classes
             }
             ingredient_counter = intInput;
             AddIngredients(intInput);
-            AddSteps();
+            AddSteps();  
+            recipes.Add(new Recipe(name, totalCalories, ingredients, steps));
+            totalCalories = 0;
                     
         }
 
@@ -256,6 +264,7 @@ namespace PROGPOE.Classes
                     Console.WriteLine(e.Message);
                 }
                 ingredient.setCalories(calories);
+                totalCalories = totalCalories + calories;
 
                 //creates ingredient object and adds it to list
                 ingredients.Add(new Ingredient(ingredientName, ingredientQuantity, measurementString, foodGroupString, calories));                
@@ -343,8 +352,11 @@ namespace PROGPOE.Classes
         /// </summary>
         public void ClearRecipe()
         {
+            string stringInput = string.Empty;  
             int intInput = 0;
             bool valid = false;
+            bool existCheck = false;
+            int recipe_index = 0;
             Console.WriteLine("-------------------------------");
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.WriteLine("Create Recipe");
@@ -352,7 +364,19 @@ namespace PROGPOE.Classes
             //prompt user to find out whether they want to clear recipe
             do
             {
-                Console.WriteLine("-------------------------------");
+                do
+                {
+                    Console.WriteLine("-------------------------------------------");
+                    Console.WriteLine("Enter Name of Recipe you wish to delete");
+                    Console.WriteLine("-------------------------------------------");
+                    stringInput = Console.ReadLine();
+
+                    existCheck = recipes.Exists(x => x.name.Contains(stringInput));
+                }
+                while (!existCheck);
+
+                recipe_index = recipes.FindIndex(x => x.name.Contains(stringInput));
+
                 Console.WriteLine("Would you like to clear recipe?");
                 Console.WriteLine("1. Yes");
                 Console.WriteLine("2. No");
@@ -376,9 +400,10 @@ namespace PROGPOE.Classes
                 }
             } 
             while (!valid);
-            if (intInput == 1) { 
-            ingredients.Clear(); //clears recipe
-            step_counter = 0;
+            if (intInput == 1) 
+            {
+                recipes.RemoveAt(recipe_index);
+                step_counter = 0;
             }
         }
 

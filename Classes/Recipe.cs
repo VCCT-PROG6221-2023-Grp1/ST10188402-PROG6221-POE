@@ -8,7 +8,7 @@ namespace PROGPOE.Classes
 {
     internal class Recipe
     {
-        string name;
+        public string name;
         int totalCalories;
         List<Ingredient> ingredients;
         List<Step> steps;
