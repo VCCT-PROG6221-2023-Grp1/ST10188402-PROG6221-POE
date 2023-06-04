@@ -73,11 +73,20 @@ namespace PROGPOE.Classes
                 }
                 else if (intInput == 6)
                 {
+                    ShowAllRecipes(); //exits application
+                }
+                else if (intInput == 7)
+                {
                     exit = true; //exits application
                 }
 
             }
             while (!exit);
+        }
+
+        public void ShowAllRecipes()
+        {
+
         }
 
         /// <summary>
@@ -428,32 +437,33 @@ namespace PROGPOE.Classes
             existCheck = recipes.Exists(recipe => recipe.name.Equals(stringInput));
             // }
             // while (!existCheck)
-
-            recipe_index = recipes.FindIndex(recipe => recipe.name == stringInput);
-
-            Console.WriteLine("\n------------------------");
-            Console.BackgroundColor = ConsoleColor.Blue;
-            Console.WriteLine("----------" + "------------");
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.WriteLine("------------------------");
-            Console.WriteLine("--------Ingredients--------");
-            try
+            if (existCheck)
             {
-                recipes[recipe_index].PrintIngredients();
+                recipe_index = recipes.FindIndex(recipe => recipe.name == stringInput);
+
+                Console.WriteLine("\n------------------------");
+                Console.BackgroundColor = ConsoleColor.Blue;
+                Console.WriteLine("----------" + "------------");
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.WriteLine("------------------------");
+                Console.WriteLine("--------Ingredients--------");
+                try
+                {
+                    recipes[recipe_index].PrintIngredients();
+                }
+                catch
+                {
+                    Console.WriteLine("Recipe does not exist");
+                }
+
+                Console.WriteLine("------------------------");
+                Console.WriteLine("------------Steps-----------");
+                recipes[recipe_index].PrintSteps();
             }
-            catch
+            else
             {
                 Console.WriteLine("Recipe does not exist");
             }
-
-            Console.WriteLine("------------------------");
-            Console.WriteLine("------------Steps-----------");
-            //for every step print its details
-            for (int j = 0; j < step_counter; j++)
-            {
-                Console.WriteLine("Step " + (j+1) + ":\n" + steps[j]);
-            }
-            Console.WriteLine("------------------------");
         }
     } 
 }

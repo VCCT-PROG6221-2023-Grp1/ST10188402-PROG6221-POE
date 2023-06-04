@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
@@ -29,11 +30,35 @@ namespace PROGPOE.Classes
             this.steps = steps;
         }
 
+        /// <summary>
+        /// Prints recipe name and total calories
+        /// </summary>
+        public void PrintRecipeInfo()
+        {
+            Console.WriteLine("Recipe: " + name);
+            Console.WriteLine("Total Calories: " + totalCalories);
+        }
+
+        /// <summary>
+        /// prints all ingredients 
+        /// </summary>
         public void PrintIngredients()
         {
             foreach (Ingredient ingredient in ingredients)
             {
                 Console.WriteLine("- {0}", ingredient.name);
+            }
+        }
+
+        /// <summary>
+        /// Prints step descriptions of all steps 
+        /// </summary>
+        public void PrintSteps()
+        {
+            int count = 0;
+            foreach (Step step in steps)
+            {
+                Console.WriteLine("- Step " + (count+1) + ": " + step.stepDescription);
             }
         }
 
