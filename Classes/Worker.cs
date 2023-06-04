@@ -84,9 +84,15 @@ namespace PROGPOE.Classes
             while (!exit);
         }
 
+        /// <summary>
+        /// Shows all recipes
+        /// </summary>
         public void ShowAllRecipes()
         {
-
+            foreach(Recipe recipe in recipes)
+            {
+                recipe.PrintRecipeInfo();
+            }
         }
 
         /// <summary>
