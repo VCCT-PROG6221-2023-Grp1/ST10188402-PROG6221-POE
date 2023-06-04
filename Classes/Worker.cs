@@ -13,8 +13,8 @@ namespace PROGPOE.Classes
         static int MAX_INGREDIENTS = 20; //maximum ingredients
         static int ingredient_counter;
         static int step_counter = 0; //step counter
-        string[] steps = new string[MAX_STEPS]; //details of a step
         List<Ingredient> ingredients = new List<Ingredient>(); //list of ingredients
+        List<Step> steps = new List<Step>(); //list of step descriptions
         Ingredient ingredient = new Ingredient("default", 0.0, "default unit");
         double[] original_ingredient_val = new double[MAX_INGREDIENTS];
 
@@ -69,6 +69,10 @@ namespace PROGPOE.Classes
                 }
                 else if (intInput == 5)
                 {
+                    CreateRecipe(); //exits application
+                }
+                else if (intInput == 6)
+                {
                     exit = true; //exits application
                 }
 
@@ -116,7 +120,7 @@ namespace PROGPOE.Classes
             int intInput = 0;
             string userInput = string.Empty;
             Console.WriteLine("\n------------------------");
-            Console.WriteLine("How many steps would you like to add? (< 15)"); //prompts user for how many steps they would want
+            Console.WriteLine("How many steps would you like to add?"); //prompts user for how many steps they would want
             Console.WriteLine("-------------------------------");
             try 
             { 
@@ -133,8 +137,7 @@ namespace PROGPOE.Classes
                 Console.WriteLine("-------------------------------");
                 Console.WriteLine("Step " + (step_counter+1) + ": ");
                 userInput = Console.ReadLine();
-                steps[step_counter] = userInput;
-                step_counter++;
+                steps.Add(new Step(userInput));
             }
         }
 

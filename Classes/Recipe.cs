@@ -13,6 +13,22 @@ namespace PROGPOE.Classes
         List<Ingredient> ingredients;
         List<Step> steps;
 
+        /// <summary>
+        /// recipe object
+        /// </summary>
+        /// <param name="name">Recipe Name</param>
+        /// <param name="totalCalories">Total Calories</param>
+        /// <param name="ingredients">List of Ingredients</param>
+        /// <param name="steps">List of Steps</param>
+        public Recipe(string name, int totalCalories, List<Ingredient> ingredients, List<Step> steps)
+        {
+            this.name = name;
+            this.totalCalories = totalCalories;
+            this.ingredients = ingredients;
+            this.steps = steps;
+        }
+
+
 
         /// <summary>
         /// Sets steps of recipe
