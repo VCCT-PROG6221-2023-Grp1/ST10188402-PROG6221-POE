@@ -11,14 +11,14 @@ namespace PROGPOE.Classes
         string name;
         int totalCalories;
         List<Ingredient> ingredients;
-        List<String> steps;
+        List<Step> steps;
 
 
         /// <summary>
         /// Sets steps of recipe
         /// </summary>
         /// <param steps="new_steps"> steps entered </param>
-        public void setSteps(List<String> new_steps)
+        public void setSteps(List<Step> new_steps)
         {
             steps = new_steps;
         }
@@ -37,7 +37,7 @@ namespace PROGPOE.Classes
         /// Gets recipe steps
         /// </summary>
         /// <returns> list of steps of recipe </returns>
-        public List<String> getSteps()
+        public List<Step> getSteps()
         {
             return steps;
         }
@@ -88,3 +88,5 @@ namespace PROGPOE.Classes
         }
     }
 }
+//______________________________0---------------------------> End of File <---------------------------0______________________________
+
