@@ -9,11 +9,12 @@ namespace PROGPOE.Classes
 {
     internal class Worker
     {
+        
         static int ingredient_counter;
         static int step_counter = 0; //step counter
         static int totalCalories = 0;
-        List<Ingredient> ingredients = new List<Ingredient>(); //list of ingredients
-        List<Step> steps = new List<Step>(); //list of step descriptions
+        static List<Ingredient> ingredients = new List<Ingredient>(); //list of ingredients
+        static List<Step> steps = new List<Step>(); //list of step descriptions
         List<Recipe> recipes = new List<Recipe>();
         Ingredient ingredient = new Ingredient("default", 0.0, "default unit", "default", 0);
 
@@ -95,6 +96,7 @@ namespace PROGPOE.Classes
             Console.WriteLine("-------------------------------");
             Console.WriteLine("Name:");
             stringInput = Console.ReadLine();
+            name = stringInput;
             Console.WriteLine("-------------------------------");
             Console.WriteLine("Ingredients:");
             Console.WriteLine("-------------------------------");
@@ -413,19 +415,35 @@ namespace PROGPOE.Classes
         /// </summary>
         public void ShowRecipe()
         {
+            string stringInput = string.Empty;
+            bool existCheck = false;
+            int recipe_index = 0;
+            // do
+            // {
+            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine("Enter Name of Recipe you wish to show");
+            Console.WriteLine("-------------------------------------------");
+            stringInput = Console.ReadLine();
+
+            existCheck = recipes.Exists(recipe => recipe.name.Equals(stringInput));
+            // }
+            // while (!existCheck)
+
+            recipe_index = recipes.FindIndex(recipe => recipe.name == stringInput);
 
             Console.WriteLine("\n------------------------");
             Console.BackgroundColor = ConsoleColor.Blue;
-            Console.WriteLine("----------RECIPE------------");
+            Console.WriteLine("----------" + "------------");
             Console.BackgroundColor = ConsoleColor.Black;
             Console.WriteLine("------------------------");
             Console.WriteLine("--------Ingredients--------");
-
-            //for every ingredient in ingredients[] print out ingredient details
-            foreach (Ingredient ingredient in ingredients)
+            try
             {
-                Console.WriteLine("- " + ingredient.getQuantity() + " " + ingredient.getMeasurementUnit() 
-                    + " of " + ingredient.getName());
+                recipes[recipe_index].PrintIngredients();
+            }
+            catch
+            {
+                Console.WriteLine("Recipe does not exist");
             }
 
             Console.WriteLine("------------------------");

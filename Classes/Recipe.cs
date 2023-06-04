@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace PROGPOE.Classes
 {
@@ -10,7 +11,7 @@ namespace PROGPOE.Classes
     {
         public string name;
         int totalCalories;
-        List<Ingredient> ingredients;
+        public List<Ingredient> ingredients;
         List<Step> steps;
 
         /// <summary>
@@ -28,7 +29,13 @@ namespace PROGPOE.Classes
             this.steps = steps;
         }
 
-
+        public void PrintIngredients()
+        {
+            foreach (Ingredient ingredient in ingredients)
+            {
+                Console.WriteLine("- {0}", ingredient.name);
+            }
+        }
 
         /// <summary>
         /// Sets steps of recipe

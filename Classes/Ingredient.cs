@@ -8,7 +8,7 @@ namespace PROGPOE.Classes
 {
     public class Ingredient
     {
-        string name;
+        public string name;
         double quantity;
         public string[] measurement_units = { "grams", "kilograms", "teaspoons", "tablespoons", "cups" };
         string measurement_unit;
