@@ -23,11 +23,13 @@ namespace PROGPOE.Classes
         /// <param name="name">name of ingredient</param>
         /// <param name="quantity">quantity of ingredients</param>
         /// <param name="measurement_unit">measurement unit of ingredient</param>
-        public Ingredient(string name, double quantity, string measurement_unit)
+        public Ingredient(string name, double quantity, string measurement_unit, string foodGroup, int calories)
         {
             this.name = name;
             this.quantity = quantity;
             this.measurement_unit = measurement_unit;
+            this.foodGroup = foodGroup;
+            this.calories = calories;
 
         }
 
@@ -65,6 +67,24 @@ namespace PROGPOE.Classes
         public void setQuantity(double new_quantity)
         {
             quantity = new_quantity;
+        }
+
+        /// <summary>
+        /// sets Quantity of Ingredient
+        /// </summary>
+        /// <param name="new_quantity"> quantity entered</param>
+        public void setCalories(int new_calories)
+        {
+            calories = new_calories;
+        }
+
+        /// <summary>
+        /// Gets unit of measurement of ingredient
+        /// </summary>
+        /// <returns></returns>
+        public int getCalories()
+        {
+            return calories;
         }
 
         /// <summary>

@@ -9,14 +9,11 @@ namespace PROGPOE.Classes
 {
     internal class Worker
     {
-        static int MAX_STEPS = 15; //maximum steps
-        static int MAX_INGREDIENTS = 20; //maximum ingredients
         static int ingredient_counter;
         static int step_counter = 0; //step counter
         List<Ingredient> ingredients = new List<Ingredient>(); //list of ingredients
         List<Step> steps = new List<Step>(); //list of step descriptions
-        Ingredient ingredient = new Ingredient("default", 0.0, "default unit");
-        double[] original_ingredient_val = new double[MAX_INGREDIENTS];
+        Ingredient ingredient = new Ingredient("default", 0.0, "default unit", "default", 0);
 
         /// <summary>
         /// Displays menu to 1.Create recipe, 2.Scale Recipe, 3.Reset Values, 4.Clear Recipe, 5. Show Recipe
@@ -135,7 +132,7 @@ namespace PROGPOE.Classes
             for (int i = 0; i < intInput; i++)
             {
                 Console.WriteLine("-------------------------------");
-                Console.WriteLine("Step " + (step_counter+1) + ": ");
+                Console.WriteLine("Step " + (i+1) + ": ");
                 userInput = Console.ReadLine();
                 steps.Add(new Step(userInput));
             }
@@ -151,6 +148,8 @@ namespace PROGPOE.Classes
             string ingredientName = string.Empty; //stores ingredient name
             double ingredientQuantity = 0; //stores ingredient quantity
             int measurementUnit = 0; //stores measurement unit
+            int food_group = 0;
+            int calories = 0;
             string stringInput = string.Empty; //gets user Input in string
 
             //for each ingredient get its name, the unit of measurement and quantity of ingredient
@@ -207,13 +206,63 @@ namespace PROGPOE.Classes
                     Console.WriteLine(e.Message);
                 }
                 ingredient.setQuantity(ingredientQuantity);
-                original_ingredient_val[i] = ingredientQuantity;
+
+                //gets ingredient food group
+                Console.WriteLine("-------------------------------");
+                Console.BackgroundColor = ConsoleColor.Blue;
+                Console.WriteLine("Enter Ingredient Measurement Unit");
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.WriteLine("1. Starchy");
+                Console.WriteLine("2. Vegetables and fruits");
+                Console.WriteLine("3. Dry beans, peas, lentils and soya");
+                Console.WriteLine("4. Chicken, fish, meat and eggs");
+                Console.WriteLine("5. Milk and dairy products");
+                Console.WriteLine("6. Fats and oil");
+                Console.WriteLine("7. Water");
+                Console.WriteLine("-------------------------------");
+                stringInput = Console.ReadLine();
+
+                try
+                {
+                    food_group = int.Parse(stringInput);
+                    if (measurementUnit > 7)
+                    {
+                        Console.WriteLine("Incorrect value");
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                ingredient.setFoodGroup(food_group);
+                string foodGroupString = ingredient.getFoodGroup(); 
+
+                //gets calories
+                Console.WriteLine("-------------------------------");
+                Console.WriteLine("Calories");
+                Console.WriteLine("-------------------------------");
+                stringInput = Console.ReadLine();
+
+                try
+                {
+                    calories = int.Parse(stringInput);
+                    if (measurementUnit < 0)
+                    {
+                        Console.WriteLine("Negative calories? Seriously...");
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                ingredient.setCalories(calories);
 
                 //creates ingredient object and adds it to list
-                ingredients.Add(new Ingredient(ingredientName, ingredientQuantity, measurementString));                
+                ingredients.Add(new Ingredient(ingredientName, ingredientQuantity, measurementString, foodGroupString, calories));                
 
             
             }
+
         }
 
         /// <summary>
@@ -284,7 +333,6 @@ namespace PROGPOE.Classes
             //for each ingredient reset its value to original
             foreach (Ingredient ingredient in ingredients)
             {
-                ingredient.setQuantity(original_ingredient_val[i]);
                 i++;
             }
         }
