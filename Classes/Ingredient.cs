@@ -12,6 +12,10 @@ namespace PROGPOE.Classes
         double quantity;
         public string[] measurement_units = { "grams", "kilograms", "teaspoons", "tablespoons", "cups" };
         string measurement_unit;
+        int calories;
+        string[] food_groups = { "Starchy", "Vegetables and fruits", "Dry beans, peas, lentils and soya",
+            "Chicken, fish, meat and eggs", "Milk and dairy products", "Fats and oil", "Water" };
+        string foodGroup;
 
         /// <summary>
         /// Ingredient Object
@@ -79,6 +83,24 @@ namespace PROGPOE.Classes
         public void setMeasurementUnit(int new_measurement_unit)
         {
             measurement_unit = measurement_units[new_measurement_unit-1]; 
+        }
+
+        /// <summary>
+        /// Gets food group of ingredient
+        /// </summary>
+        /// <returns>food group</returns>
+        public string getFoodGroup()
+        {
+            return foodGroup;
+        }
+
+        /// <summary>
+        /// Sets food group of ingredient
+        /// </summary>
+        /// <param foodGroup="new_foodGroup"> number entered to decide what unit</param>
+        public void setFoodGroup(int new_foodGroup)
+        {
+            foodGroup = food_groups[new_foodGroup - 1];
         }
     }
 }
