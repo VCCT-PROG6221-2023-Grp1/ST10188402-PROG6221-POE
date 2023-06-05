@@ -14,6 +14,25 @@ namespace PROGPOE.Classes
         int totalCalories;
         public List<Ingredient> recipeIngredients = new List<Ingredient>();
         List<Step> recipeSteps = new List<Step>();
+        double[] scales = { 0.5, 2, 3 };
+        double scale = 0;
+
+        public void ScaleRecipe(int scale)
+        {
+            foreach (Ingredient ingredient in recipeIngredients)
+            {
+                ingredient.Quantity *= scale;
+            }
+        }
+
+        /// <summary>
+        /// sets scale to be multiplied
+        /// </summary>
+        /// <param name="new_scale"></param>
+        public void setScale(int new_scale)
+        {
+            scale = scales[new_scale - 1];
+        }
 
         /// <summary>
         /// recipe object

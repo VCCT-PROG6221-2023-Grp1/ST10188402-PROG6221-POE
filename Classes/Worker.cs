@@ -39,7 +39,8 @@ namespace PROGPOE.Classes
                 Console.WriteLine("3. Reset Recipe Values");
                 Console.WriteLine("4. Clear Recipe");
                 Console.WriteLine("5. Create Recipe");
-                Console.WriteLine("6. Exit");
+                Console.WriteLine("6. Show All Recipes");
+                Console.WriteLine("7. Exit");
                 stringInput = Console.ReadLine();
 
                 try
@@ -296,57 +297,40 @@ namespace PROGPOE.Classes
         /// --TO DO--
         /// </summary>
         public void ScaleRecipe()
-        {   
+        {
             bool finish = false;
             int userInput = 0;
             Console.WriteLine("\n------------------------------");
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.WriteLine("Scale Recipe");
             Console.BackgroundColor = ConsoleColor.Black;
-            Console.WriteLine("-------------------------------");
-            Console.WriteLine("1. half amounts");
-            Console.WriteLine("2. double amounts");
-            Console.WriteLine("3. triple amounts");
+            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine("Enter Name of Recipe you wish to show");
+            Console.WriteLine("-------------------------------------------");
+            string recipeName = Console.ReadLine();
 
-            //prompt for user input until correct value is entered
-            do
-            { 
+            Recipe recipe = recipes.FirstOrDefault(r => r.name.Equals(recipeName));
 
-                try
+            if (recipe != null) {
+                Console.WriteLine("1. half amounts");
+                Console.WriteLine("2. double amounts");
+                Console.WriteLine("3. triple amounts");
+
+                //prompt for user input until correct value is entered
+                do
                 {
-                userInput = int.Parse(Console.ReadLine()); //stores user input
-                }
-                catch(Exception e)
-                { 
-                Console.WriteLine(e.Message);
-                }
 
-                foreach (Ingredient ingredient in ingredients)
-                {
-                    //if user input = 1 half quantity
-                    if (userInput == 1)
+                    try
                     {
-                        ingredient.setQuantity(ingredient.getQuantity() / 2);
+                        userInput = int.Parse(Console.ReadLine()); //stores user input
                     }
-
-                    //if user input = 2 double quantity
-                    else if (userInput == 2)
+                    catch (Exception e)
                     {
-                        ingredient.setQuantity(ingredient.getQuantity() * 2);
-                    }
-
-                    //if user input = 3 triple quantity
-                    else if (userInput == 3)
-                    {
-                        ingredient.setQuantity(ingredient.getQuantity() * 3);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Incorrect value entered");
-                    }
+                        Console.WriteLine(e.Message);
+                    }                    
                 }
+                while(finish);
             }
-            while (finish);
         }
 
         /// <summary>
