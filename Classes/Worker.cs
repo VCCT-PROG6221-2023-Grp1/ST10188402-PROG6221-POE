@@ -343,12 +343,22 @@ namespace PROGPOE.Classes
         /// </summary>
         public void ResetRecipe()
         {
-            int i = 0; //counter 
-            //for each ingredient reset its value to original
-            foreach (Ingredient ingredient in ingredients)
+            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine("Enter Name of Recipe you wish to Reset");
+            Console.WriteLine("-------------------------------------------");
+            string recipeName = Console.ReadLine();
+
+            Recipe recipe = recipes.FirstOrDefault(r => r.name.Equals(recipeName));
+
+            if (recipe != null)
             {
-                i++;
+                recipe.ResetRecipe();
             }
+            else
+            {
+                Console.WriteLine("Recipe does not exist");
+            }
+
         }
 
         /// <summary>
@@ -364,22 +374,18 @@ namespace PROGPOE.Classes
             int recipe_index = 0;
             Console.WriteLine("-------------------------------");
             Console.BackgroundColor = ConsoleColor.Blue;
-            Console.WriteLine("Create Recipe");
+            Console.WriteLine("Clear Recipe");
             Console.BackgroundColor = ConsoleColor.Black;
             //prompt user to find out whether they want to clear recipe
             do
             {
-                do
-                {
-                    Console.WriteLine("-------------------------------------------");
-                    Console.WriteLine("Enter Name of Recipe you wish to delete");
-                    Console.WriteLine("-------------------------------------------");
-                    stringInput = Console.ReadLine();
+                Console.WriteLine("-------------------------------------------");
+                Console.WriteLine("Enter Name of Recipe you wish to delete");
+                Console.WriteLine("-------------------------------------------");
+                stringInput = Console.ReadLine();
 
-                    existCheck = recipes.Exists(x => x.name.Contains(stringInput));
-                }
-                while (!existCheck);
-
+                existCheck = recipes.Exists(x => x.name.Contains(stringInput));
+              
                 recipe_index = recipes.FindIndex(x => x.name.Contains(stringInput));
 
                 Console.WriteLine("Would you like to clear recipe?");
