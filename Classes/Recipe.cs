@@ -17,11 +17,15 @@ namespace PROGPOE.Classes
         double[] scales = { 0.5, 2, 3 };
         double scale = 0;
 
+        /// <summary>
+        /// Scales ingredients of recipe
+        /// </summary>
+        /// <param name="scale"></param>
         public void ScaleRecipe(int scale)
         {
             foreach (Ingredient ingredient in recipeIngredients)
             {
-                ingredient.Quantity *= scale;
+                ingredient.quantity *= scale;
             }
         }
 
