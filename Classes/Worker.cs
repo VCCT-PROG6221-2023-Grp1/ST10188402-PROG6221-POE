@@ -13,8 +13,8 @@ namespace PROGPOE.Classes
         static int ingredient_counter;
         static int step_counter = 0; //step counter
         static int totalCalories = 0;
-        static List<Ingredient> ingredients = new List<Ingredient>(); //list of ingredients
-        static List<Step> steps = new List<Step>(); //list of step descriptions
+        List<Ingredient> ingredients = new List<Ingredient>(); //list of ingredients
+        static 
         List<Recipe> recipes = new List<Recipe>();
         Ingredient ingredient = new Ingredient("default", 0.0, "default unit", "default", 0);
 
@@ -92,6 +92,7 @@ namespace PROGPOE.Classes
             foreach(Recipe recipe in recipes)
             {
                 recipe.PrintRecipeInfo();
+                Console.WriteLine("-----------------------");
             }
         }
 
@@ -101,6 +102,7 @@ namespace PROGPOE.Classes
         /// </summary>
         public void CreateRecipe()
         {
+             //list of ingredients
             string stringInput = string.Empty;
             string name = string.Empty;
             int intInput = 0;
@@ -127,8 +129,8 @@ namespace PROGPOE.Classes
                 Console.WriteLine(e.Message);
             }
             ingredient_counter = intInput;
-            AddIngredients(intInput);
-            AddSteps();  
+            List<Ingredient> ingredients = AddIngredients(intInput);
+            List<Step> steps = AddSteps();  
             recipes.Add(new Recipe(name, totalCalories, ingredients, steps));
             totalCalories = 0;
                     
@@ -137,8 +139,9 @@ namespace PROGPOE.Classes
         /// <summary>
         /// Adds details of steps to steps array
         /// </summary>
-        public void AddSteps()
+        public List<Step> AddSteps()
         {
+            List<Step> steps = new List<Step>(); //list of step descriptions
             int intInput = 0;
             string userInput = string.Empty;
             Console.WriteLine("\n------------------------");
@@ -161,15 +164,16 @@ namespace PROGPOE.Classes
                 userInput = Console.ReadLine();
                 steps.Add(new Step(userInput));
             }
+            return steps;
         }
 
         /// <summary>
         /// Adds Ingredient information for each ingredient
         /// </summary>
         /// <param name="ingredientAmount">amount of ingredients being added</param>
-        public void AddIngredients(int ingredientAmount)
+        public List<Ingredient> AddIngredients(int ingredientAmount)
         {
-
+            List<Ingredient> ingredients = new List<Ingredient>();
             string ingredientName = string.Empty; //stores ingredient name
             double ingredientQuantity = 0; //stores ingredient quantity
             int measurementUnit = 0; //stores measurement unit
@@ -216,7 +220,6 @@ namespace PROGPOE.Classes
                     Console.WriteLine(e.Message);
                 }
                 ingredient.setMeasurementUnit(measurementUnit);
-                string measurementString = ingredient.getMeasurementUnit();
 
                 //gets quantity of ingredients
                 Console.WriteLine("Enter Quantity of ingredient");
@@ -259,8 +262,7 @@ namespace PROGPOE.Classes
                 {
                     Console.WriteLine(e.Message);
                 }
-                ingredient.setFoodGroup(food_group);
-                string foodGroupString = ingredient.getFoodGroup(); 
+                ingredient.setFoodGroup(food_group); 
 
                 //gets calories
                 Console.WriteLine("-------------------------------");
@@ -284,11 +286,9 @@ namespace PROGPOE.Classes
                 totalCalories = totalCalories + calories;
 
                 //creates ingredient object and adds it to list
-                ingredients.Add(new Ingredient(ingredientName, ingredientQuantity, measurementString, foodGroupString, calories));                
-
-            
+                ingredients.Add(new Ingredient(ingredient.getName(), ingredient.getQuantity(), ingredient.getMeasurementUnit(), ingredient.getFoodGroup(), ingredient.getCalories()));                
             }
-
+            return ingredients;
         }
 
         /// <summary>
@@ -430,41 +430,20 @@ namespace PROGPOE.Classes
         /// </summary>
         public void ShowRecipe()
         {
-            string stringInput = string.Empty;
-            bool existCheck = false;
-            int recipe_index = 0;
-            // do
-            // {
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine("Enter Name of Recipe you wish to show");
             Console.WriteLine("-------------------------------------------");
-            stringInput = Console.ReadLine();
+            string recipeName = Console.ReadLine();
 
-            existCheck = recipes.Exists(recipe => recipe.name.Equals(stringInput));
-            // }
-            // while (!existCheck)
-            if (existCheck)
+            Recipe recipe = recipes.FirstOrDefault(r => r.name.Equals(recipeName));
+
+            if (recipe != null)
             {
-                recipe_index = recipes.FindIndex(recipe => recipe.name == stringInput);
-
-                Console.WriteLine("\n------------------------");
-                Console.BackgroundColor = ConsoleColor.Blue;
-                Console.WriteLine("----------" + "------------");
-                Console.BackgroundColor = ConsoleColor.Black;
-                Console.WriteLine("------------------------");
-                Console.WriteLine("--------Ingredients--------");
-                try
-                {
-                    recipes[recipe_index].PrintIngredients();
-                }
-                catch
-                {
-                    Console.WriteLine("Recipe does not exist");
-                }
-
-                Console.WriteLine("------------------------");
-                Console.WriteLine("------------Steps-----------");
-                recipes[recipe_index].PrintSteps();
+                recipe.PrintRecipeInfo();
+                Console.WriteLine("Ingredients:");
+                recipe.PrintIngredients();
+                Console.WriteLine("Steps:");
+                recipe.PrintSteps();
             }
             else
             {

@@ -12,8 +12,8 @@ namespace PROGPOE.Classes
     {
         public string name;
         int totalCalories;
-        public List<Ingredient> ingredients;
-        List<Step> steps;
+        public List<Ingredient> recipeIngredients = new List<Ingredient>();
+        List<Step> recipeSteps = new List<Step>();
 
         /// <summary>
         /// recipe object
@@ -22,12 +22,12 @@ namespace PROGPOE.Classes
         /// <param name="totalCalories">Total Calories</param>
         /// <param name="ingredients">List of Ingredients</param>
         /// <param name="steps">List of Steps</param>
-        public Recipe(string name, int totalCalories, List<Ingredient> ingredients, List<Step> steps)
+        public Recipe(string name, int totalCalories, List<Ingredient> recipeIngredients, List<Step> recipeSteps)
         {
             this.name = name;
             this.totalCalories = totalCalories;
-            this.ingredients = ingredients;
-            this.steps = steps;
+            this.recipeIngredients = recipeIngredients;
+            this.recipeSteps = recipeSteps;
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace PROGPOE.Classes
         /// </summary>
         public void PrintIngredients()
         {
-            foreach (Ingredient ingredient in ingredients)
+            foreach (Ingredient ingredient in recipeIngredients)
             {
                 Console.WriteLine("- {0}", ingredient.name);
             }
@@ -56,7 +56,7 @@ namespace PROGPOE.Classes
         public void PrintSteps()
         {
             int count = 0;
-            foreach (Step step in steps)
+            foreach (Step step in recipeSteps)
             {
                 Console.WriteLine("- Step " + (count+1) + ": " + step.stepDescription);
             }
@@ -68,7 +68,7 @@ namespace PROGPOE.Classes
         /// <param steps="new_steps"> steps entered </param>
         public void setSteps(List<Step> new_steps)
         {
-            steps = new_steps;
+            recipeSteps = new_steps;
         }
 
 
@@ -87,7 +87,7 @@ namespace PROGPOE.Classes
         /// <returns> list of steps of recipe </returns>
         public List<Step> getSteps()
         {
-            return steps;
+            return recipeSteps;
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace PROGPOE.Classes
         /// <param ingredients="new_ingredients"> list of ingredients </param>
         public void setIngredients(List<Ingredient> new_ingredients)
         {
-            ingredients = new_ingredients;
+            recipeIngredients = new_ingredients;
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace PROGPOE.Classes
         /// <returns> list of ingredients in recipe </returns>
         public List<Ingredient> getIngredients()
         {
-            return ingredients;
+            return recipeIngredients;
         }
 
         /// <summary>
