@@ -17,17 +17,26 @@ namespace PROGPOE.Classes
         double[] scales = { 0.5, 2, 3 };
         double scale = 0;
 
+        public void ResetRecipe()
+        {
+            foreach (Ingredient ingredient in recipeIngredients)
+            {
+                ingredient.ResetQuantity(); 
+            }
+        }
+
         /// <summary>
         /// Scales ingredients of recipe
         /// </summary>
         /// <param name="scale"></param>
-        public void ScaleRecipe(int scale)
+        public void ScaleRecipeIngredients()
         {
             foreach (Ingredient ingredient in recipeIngredients)
             {
                 ingredient.quantity *= scale;
             }
         }
+
 
         /// <summary>
         /// sets scale to be multiplied

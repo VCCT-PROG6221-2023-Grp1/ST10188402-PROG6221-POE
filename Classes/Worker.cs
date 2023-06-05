@@ -327,7 +327,11 @@ namespace PROGPOE.Classes
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
-                    }                    
+                    }
+                    
+                    recipe.setScale(userInput); //sets scale of recipe
+                    recipe.ScaleRecipeIngredients(); //scales recipe
+
                 }
                 while(finish);
             }
