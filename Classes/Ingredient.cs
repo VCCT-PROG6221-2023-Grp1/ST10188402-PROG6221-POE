@@ -8,10 +8,10 @@ namespace PROGPOE.Classes
 {
     public class Ingredient
     {
-        public string name;
-        public double quantity;
+        string name;
+        double quantity;
         double originalQuantity;
-        public string[] measurement_units = { "grams", "kilograms", "teaspoons", "tablespoons", "cups" };
+        string[] measurement_units = { "grams", "kilograms", "teaspoons", "tablespoons", "cups" };
         string measurement_unit;
         int calories;
         string[] food_groups = { "Starchy", "Vegetables and fruits", "Dry beans, peas, lentils and soya",
@@ -70,13 +70,20 @@ namespace PROGPOE.Classes
         }
 
         /// <summary>
+        /// sets original Quantity of Ingredient
+        /// </summary>
+        public void setOriginalQuantity()
+        {
+            originalQuantity = quantity;
+        }
+
+        /// <summary>
         /// sets Quantity of Ingredient
         /// </summary>
         /// <param name="new_quantity"> quantity entered</param>
         public void setQuantity(double new_quantity)
         {
             quantity = new_quantity;
-            originalQuantity = quantity;
         }
 
         /// <summary>

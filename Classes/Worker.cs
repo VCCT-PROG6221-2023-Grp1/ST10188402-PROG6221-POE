@@ -305,7 +305,7 @@ namespace PROGPOE.Classes
             Console.WriteLine("Scale Recipe");
             Console.BackgroundColor = ConsoleColor.Black;
             Console.WriteLine("-------------------------------------------");
-            Console.WriteLine("Enter Name of Recipe you wish to show");
+            Console.WriteLine("Enter Name of Recipe you wish to scale");
             Console.WriteLine("-------------------------------------------");
             string recipeName = Console.ReadLine();
 
@@ -331,6 +331,7 @@ namespace PROGPOE.Classes
                     
                     recipe.setScale(userInput); //sets scale of recipe
                     recipe.ScaleRecipeIngredients(); //scales recipe
+                    Console.WriteLine("Successfully Scaled!");
 
                 }
                 while(finish);
@@ -353,6 +354,7 @@ namespace PROGPOE.Classes
             if (recipe != null)
             {
                 recipe.ResetRecipe();
+                Console.WriteLine("Reset Successfully!")
             }
             else
             {
@@ -415,6 +417,8 @@ namespace PROGPOE.Classes
             {
                 recipes.RemoveAt(recipe_index);
                 step_counter = 0;
+                Console.WriteLine("Successfully removed!");
+
             }
         }
 

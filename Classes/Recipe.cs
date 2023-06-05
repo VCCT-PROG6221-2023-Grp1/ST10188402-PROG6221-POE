@@ -11,7 +11,8 @@ namespace PROGPOE.Classes
     internal class Recipe
     {
         public string name;
-        int totalCalories;
+        double totalCalories;
+        double originalTotalCalories;
         public List<Ingredient> recipeIngredients = new List<Ingredient>();
         List<Step> recipeSteps = new List<Step>();
         double[] scales = { 0.5, 2, 3 };
@@ -21,7 +22,8 @@ namespace PROGPOE.Classes
         {
             foreach (Ingredient ingredient in recipeIngredients)
             {
-                ingredient.ResetQuantity(); 
+                ingredient.ResetQuantity();
+                totalCalories = originalTotalCalories;
             }
         }
 
@@ -33,7 +35,8 @@ namespace PROGPOE.Classes
         {
             foreach (Ingredient ingredient in recipeIngredients)
             {
-                ingredient.quantity *= scale;
+                ingredient.setQuantity(ingredient.getQuantity() * scale);
+                totalCalories *= scale;
             }
         }
 
@@ -78,7 +81,9 @@ namespace PROGPOE.Classes
         {
             foreach (Ingredient ingredient in recipeIngredients)
             {
-                Console.WriteLine("- {0}", ingredient.name);
+                Console.WriteLine("- " + ingredient.getName() + ", Quantity - " + ingredient.getQuantity()
+                    + " " + ingredient.getMeasurementUnit() + ", Food Group - " + ingredient.getFoodGroup()
+                    + ", Calories: " + ingredient.getCalories());
             }
         }
 
@@ -162,7 +167,7 @@ namespace PROGPOE.Classes
         /// Gets total calories of a recipe
         /// </summary>
         /// <returns> total calories </returns>
-        public int getTotalCalories()
+        public double getTotalCalories()
         {
             return totalCalories;
         }
