@@ -13,7 +13,8 @@ namespace PROGPOE.Classes
         double originalQuantity;
         string[] measurement_units = { "grams", "kilograms", "teaspoons", "tablespoons", "cups" };
         string measurement_unit;
-        int calories;
+        double calories;
+        double originalCalories;
         string[] food_groups = { "Starchy", "Vegetables and fruits", "Dry beans, peas, lentils and soya",
             "Chicken, fish, meat and eggs", "Milk and dairy products", "Fats and oil", "Water" };
         string foodGroup;
@@ -24,6 +25,7 @@ namespace PROGPOE.Classes
         public void ResetQuantity()
         {
             quantity = originalQuantity;
+            calories = originalCalories;
         }
 
         /// <summary>
@@ -32,7 +34,7 @@ namespace PROGPOE.Classes
         /// <param name="name">name of ingredient</param>
         /// <param name="quantity">quantity of ingredients</param>
         /// <param name="measurement_unit">measurement unit of ingredient</param>
-        public Ingredient(string name, double quantity, string measurement_unit, string foodGroup, int calories)
+        public Ingredient(string name, double quantity, string measurement_unit, string foodGroup, double calories)
         {
             this.name = name;
             this.quantity = quantity;
@@ -78,6 +80,14 @@ namespace PROGPOE.Classes
         }
 
         /// <summary>
+        /// sets original Quantity of Ingredient
+        /// </summary>
+        public void setOriginalCalories()
+        {
+            originalCalories = calories;
+        }
+
+        /// <summary>
         /// sets Quantity of Ingredient
         /// </summary>
         /// <param name="new_quantity"> quantity entered</param>
@@ -90,7 +100,7 @@ namespace PROGPOE.Classes
         /// sets Quantity of Ingredient
         /// </summary>
         /// <param name="new_quantity"> quantity entered</param>
-        public void setCalories(int new_calories)
+        public void setCalories(double new_calories)
         {
             calories = new_calories;
         }
@@ -99,7 +109,7 @@ namespace PROGPOE.Classes
         /// Gets unit of measurement of ingredient
         /// </summary>
         /// <returns></returns>
-        public int getCalories()
+        public double getCalories()
         {
             return calories;
         }

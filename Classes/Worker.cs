@@ -11,7 +11,6 @@ namespace PROGPOE.Classes
     {
         
         static int ingredient_counter;
-        static int step_counter = 0; //step counter
         static int totalCalories = 0;
         List<Ingredient> ingredients = new List<Ingredient>(); //list of ingredients
         static 
@@ -131,10 +130,23 @@ namespace PROGPOE.Classes
             }
             ingredient_counter = intInput;
             List<Ingredient> ingredients = AddIngredients(intInput);
-            List<Step> steps = AddSteps();  
-            recipes.Add(new Recipe(name, totalCalories, ingredients, steps));
+            List<Step> steps = AddSteps();
+            
+            Recipe recipe = new Recipe(name, totalCalories, ingredients, steps);
+            recipes.Add(recipe);
+            
+            recipe.CaloriesExceeded += Recipe_CaloriesExceeded;
+            recipe.setTotalCalories(totalCalories);
+
             totalCalories = 0;
                     
+        }
+
+        private static void Recipe_CaloriesExceeded(string recipeName, double totalCalories)
+        {
+            Console.WriteLine("--------------------------------------");
+            Console.WriteLine("The recipe: " + recipeName+ " exceeds 300 calories. \nTotal calories: "
+                + totalCalories);
         }
 
         /// <summary>
@@ -235,6 +247,7 @@ namespace PROGPOE.Classes
                     Console.WriteLine(e.Message);
                 }
                 ingredient.setQuantity(ingredientQuantity);
+                ingredient.setOriginalQuantity();
 
                 //gets ingredient food group
                 Console.WriteLine("-------------------------------");
@@ -284,6 +297,7 @@ namespace PROGPOE.Classes
                     Console.WriteLine(e.Message);
                 }
                 ingredient.setCalories(calories);
+                ingredient.setOriginalCalories();
                 totalCalories = totalCalories + calories;
 
                 //creates ingredient object and adds it to list
@@ -332,9 +346,11 @@ namespace PROGPOE.Classes
                     recipe.setScale(userInput); //sets scale of recipe
                     recipe.ScaleRecipeIngredients(); //scales recipe
                     Console.WriteLine("Successfully Scaled!");
+                    
 
                 }
                 while(finish);
+                recipe.CaloriesExceeded += Recipe_CaloriesExceeded;
             }
         }
 
@@ -354,7 +370,8 @@ namespace PROGPOE.Classes
             if (recipe != null)
             {
                 recipe.ResetRecipe();
-                Console.WriteLine("Reset Successfully!")
+                Console.WriteLine("Reset Successfully!");
+                Console.WriteLine("-------------------------------------------");
             }
             else
             {
@@ -416,7 +433,6 @@ namespace PROGPOE.Classes
             if (intInput == 1) 
             {
                 recipes.RemoveAt(recipe_index);
-                step_counter = 0;
                 Console.WriteLine("Successfully removed!");
 
             }
@@ -437,6 +453,7 @@ namespace PROGPOE.Classes
 
             if (recipe != null)
             {
+                Console.WriteLine("-------------------------------------------");
                 recipe.PrintRecipeInfo();
                 Console.WriteLine("Ingredients:");
                 recipe.PrintIngredients();

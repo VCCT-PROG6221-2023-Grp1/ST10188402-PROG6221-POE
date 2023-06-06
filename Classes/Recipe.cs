@@ -8,6 +8,8 @@ using System.Xml.Linq;
 
 namespace PROGPOE.Classes
 {
+    public delegate void RecipeCaloriesExceededHandler(string recipeName, double totalCalories);
+
     internal class Recipe
     {
         public string name;
@@ -17,6 +19,8 @@ namespace PROGPOE.Classes
         List<Step> recipeSteps = new List<Step>();
         double[] scales = { 0.5, 2, 3 };
         double scale = 0;
+
+        public event RecipeCaloriesExceededHandler CaloriesExceeded;
 
         public void ResetRecipe()
         {
@@ -36,6 +40,7 @@ namespace PROGPOE.Classes
             foreach (Ingredient ingredient in recipeIngredients)
             {
                 ingredient.setQuantity(ingredient.getQuantity() * scale);
+                ingredient.setCalories(ingredient.getCalories() * scale);
                 totalCalories *= scale;
             }
         }
@@ -160,6 +165,11 @@ namespace PROGPOE.Classes
         /// <param totalCalories="new_totalCalories"> total calories </param>
         public void setTotalCalories(int new_totalCalories)
         {
+            if (new_totalCalories > 300)
+            {
+                CaloriesExceeded?.Invoke(name, new_totalCalories);
+            }
+
             totalCalories = new_totalCalories;
         }
 
