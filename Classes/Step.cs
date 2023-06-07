@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace PROGPOE.Classes
 {
-    internal class Step
+    public class Step
     {
         public string stepDescription;
 

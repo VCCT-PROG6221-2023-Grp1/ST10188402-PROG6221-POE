@@ -10,7 +10,7 @@ namespace PROGPOE.Classes
 {
     public delegate void RecipeCaloriesExceededHandler(string recipeName, double totalCalories);
 
-    internal class Recipe
+    public class Recipe
     {
         public string name;
         double totalCalories;

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PROGPOE.Classes
 {
-    internal class Worker
+    public class Worker
     {
         
         static int ingredient_counter;
@@ -138,10 +138,20 @@ namespace PROGPOE.Classes
             
             recipe.CaloriesExceeded += Recipe_CaloriesExceeded;
             recipe.setTotalCalories(totalCalories);
-            IEnumerable<Recipe> orderedByName = recipes.OrderBy(r => r.name);
+            recipes = SortRecipes();
 
 
         }
+
+        /// <summary>
+        /// Sorts Recipe list into new list
+        /// </summary>
+        /// <returns>new sorted list</returns>
+        public List<Recipe> SortRecipes()
+        {
+            return recipes.OrderBy(r => r.name).ToList();
+        }
+
 
         private static void Recipe_CaloriesExceeded(string recipeName, double totalCalories)
         {
