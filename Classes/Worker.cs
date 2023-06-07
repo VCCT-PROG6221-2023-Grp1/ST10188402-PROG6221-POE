@@ -29,6 +29,8 @@ namespace PROGPOE.Classes
                 int intInput = 0; //declare variable for user input to converted to int
 
                 //Displays menu and stores user input
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Black;
                 Console.WriteLine("\n---------------------------");
                 Console.WriteLine("Recipe App");
                 Console.WriteLine("---------------------------");
@@ -38,7 +40,8 @@ namespace PROGPOE.Classes
                 Console.WriteLine("4. Clear Recipe");
                 Console.WriteLine("5. Create Recipe");
                 Console.WriteLine("6. Show All Recipes");
-                Console.WriteLine("7. Exit");
+                Console.WriteLine("7. What are food groups");
+                Console.WriteLine("8. Exit");
                 stringInput = Console.ReadLine();
 
                 try
@@ -68,19 +71,29 @@ namespace PROGPOE.Classes
                 }
                 else if (intInput == 5)
                 {
-                    CreateRecipe(); //exits application
+                    CreateRecipe(); //calls create recipe method
                 }
                 else if (intInput == 6)
                 {
-                    ShowAllRecipes(); //exits application
+                    ShowAllRecipes(); //calls show all recipes method
                 }
                 else if (intInput == 7)
+                {
+                    FoodGroupExplanation(); //calls food group explanation method
+                }
+                else if (intInput == 8)
                 {
                     exit = true; //exits application
                 }
 
             }
             while (!exit);
+        }
+
+        public void FoodGroupExplanation()
+        {
+            Console.WriteLine("Please visit this site for information:" +
+                " https://sweetlife.org.za/what-are-the-different-food-groups-a-simple-explanation/");
         }
 
         /// <summary>
@@ -108,9 +121,7 @@ namespace PROGPOE.Classes
             int intInput = 0;
             double totalCalories = 0;
             Console.WriteLine("\n-------------------------------");
-            Console.BackgroundColor = ConsoleColor.Blue;
             Console.WriteLine("Create Recipe");
-            Console.BackgroundColor = ConsoleColor.Black;
             Console.WriteLine("-------------------------------");
             Console.WriteLine("Name:");
             stringInput = Console.ReadLine();
@@ -160,6 +171,10 @@ namespace PROGPOE.Classes
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("The recipe: " + recipeName+ " exceeds 300 calories. \nTotal calories: "
                 + totalCalories);
+            Console.WriteLine("The amount of energy in food or drink is measured in calories." +
+                "\n recommended daily calorie intake is 2,000 calories a day be careful when making recipes" +
+                " to ensure you do not go over your target daily calories if trying to lose weight");
+            Console.ForegroundColor = ConsoleColor.Black;
         }
 
         /// <summary>
@@ -226,9 +241,7 @@ namespace PROGPOE.Classes
                 Console.WriteLine("-------------------------------");
                 Console.WriteLine("Ingredient " + (i + 1));
                 Console.WriteLine("-------------------------------");
-                Console.BackgroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Enter Ingredient Name");
-                Console.BackgroundColor = ConsoleColor.Black;
                 ingredientName = Console.ReadLine();
                 ingredient.setName(ingredientName);
 
@@ -236,9 +249,7 @@ namespace PROGPOE.Classes
                 do
                 {
                     Console.WriteLine("-------------------------------");
-                    Console.BackgroundColor = ConsoleColor.Blue;
                     Console.WriteLine("Enter Ingredient Measurement Unit");
-                    Console.BackgroundColor = ConsoleColor.Black;
                     Console.WriteLine("1. Grams");
                     Console.WriteLine("2. Kilograms");
                     Console.WriteLine("3. Teaspoons");
@@ -294,9 +305,7 @@ namespace PROGPOE.Classes
                 //gets ingredient food group
                 do {
                     Console.WriteLine("-------------------------------");
-                    Console.BackgroundColor = ConsoleColor.Blue;
                     Console.WriteLine("Enter Ingredient Food Group");
-                    Console.BackgroundColor = ConsoleColor.Black;
                     Console.WriteLine("1. Starchy");
                     Console.WriteLine("2. Vegetables and fruits");
                     Console.WriteLine("3. Dry beans, peas, lentils and soya");
@@ -370,9 +379,7 @@ namespace PROGPOE.Classes
             bool finish = false;
             int userInput = 0;
             Console.WriteLine("\n------------------------------");
-            Console.BackgroundColor = ConsoleColor.Blue;
             Console.WriteLine("Scale Recipe");
-            Console.BackgroundColor = ConsoleColor.Black;
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine("Enter Name of Recipe you wish to scale");
             Console.WriteLine("-------------------------------------------");
@@ -448,9 +455,7 @@ namespace PROGPOE.Classes
             bool existCheck = false;
             int recipe_index = 0;
             Console.WriteLine("-------------------------------");
-            Console.BackgroundColor = ConsoleColor.Blue;
             Console.WriteLine("Clear Recipe");
-            Console.BackgroundColor = ConsoleColor.Black;
             //prompt user to find out whether they want to clear recipe
             do
             {

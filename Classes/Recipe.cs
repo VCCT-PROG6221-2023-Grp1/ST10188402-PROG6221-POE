@@ -178,12 +178,12 @@ namespace PROGPOE.Classes
         /// <param totalCalories="new_totalCalories"> total calories </param>
         public void setTotalCalories(double new_totalCalories)
         {
+            totalCalories = new_totalCalories;
+
             if (new_totalCalories > 300)
             {
                 CaloriesExceeded?.Invoke(name, new_totalCalories);
             }
-
-            totalCalories = new_totalCalories;
         }
 
         /// <summary>
