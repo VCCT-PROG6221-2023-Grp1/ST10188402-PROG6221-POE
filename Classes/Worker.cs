@@ -88,6 +88,7 @@ namespace PROGPOE.Classes
         /// </summary>
         public void ShowAllRecipes()
         {
+
             foreach(Recipe recipe in recipes)
             {
                 recipe.PrintRecipeInfo();
@@ -156,6 +157,7 @@ namespace PROGPOE.Classes
         private static void Recipe_CaloriesExceeded(string recipeName, double totalCalories)
         {
             Console.WriteLine("--------------------------------------");
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("The recipe: " + recipeName+ " exceeds 300 calories. \nTotal calories: "
                 + totalCalories);
         }
@@ -287,7 +289,7 @@ namespace PROGPOE.Classes
                 while(!validCheck);
                 validCheck = false;
                 ingredient.setQuantity(ingredientQuantity);
-                ingredient.setOriginalQuantity();
+                ingredient.setOriginalQuantity(ingredientQuantity);
 
                 //gets ingredient food group
                 do {
@@ -352,7 +354,7 @@ namespace PROGPOE.Classes
                 }
                 while (!validCheck);
                 ingredient.setCalories(calories);
-                ingredient.setOriginalCalories();
+                ingredient.setOriginalCalories(calories);
                 //creates ingredient object and adds it to list
                 ingredients.Add(new Ingredient(ingredient.getName(), ingredient.getQuantity(), ingredient.getMeasurementUnit(), ingredient.getFoodGroup(), ingredient.getCalories()));                
             }

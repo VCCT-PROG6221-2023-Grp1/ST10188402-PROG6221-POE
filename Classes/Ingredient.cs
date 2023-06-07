@@ -10,11 +10,11 @@ namespace PROGPOE.Classes
     {
         string name;
         double quantity;
-        double originalQuantity;
+        static double originalQuantity;
         string[] measurement_units = { "grams", "kilograms", "teaspoons", "tablespoons", "cups" };
         string measurement_unit;
         double calories;
-        double originalCalories;
+        static double originalCalories;
         string[] food_groups = { "Starchy", "Vegetables and fruits", "Dry beans, peas, lentils and soya",
             "Chicken, fish, meat and eggs", "Milk and dairy products", "Fats and oil", "Water" };
         string foodGroup;
@@ -24,8 +24,8 @@ namespace PROGPOE.Classes
         /// </summary>
         public void ResetQuantity()
         {
-            quantity = originalQuantity;
-            calories = originalCalories;
+            setQuantity(originalQuantity);
+            setCalories(originalCalories);
         }
 
         /// <summary>
@@ -74,17 +74,17 @@ namespace PROGPOE.Classes
         /// <summary>
         /// sets original Quantity of Ingredient
         /// </summary>
-        public void setOriginalQuantity()
+        public void setOriginalQuantity(double new_originalQuantity)
         {
-            originalQuantity = quantity;
+            originalQuantity = new_originalQuantity;
         }
 
         /// <summary>
         /// sets original Quantity of Ingredient
         /// </summary>
-        public void setOriginalCalories()
+        public void setOriginalCalories(double new_originalCalories)
         {
-            originalCalories = calories;
+            originalCalories = new_originalCalories;
         }
 
         /// <summary>

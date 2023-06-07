@@ -27,6 +27,7 @@ namespace PROGPOE.Classes
             foreach (Ingredient ingredient in recipeIngredients)
             {
                 totalCalories = ingredient.getCalories() + totalCalories;
+                originalTotalCalories = totalCalories;
             }
             return totalCalories;
         }
