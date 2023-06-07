@@ -22,6 +22,18 @@ namespace PROGPOE.Classes
 
         public event RecipeCaloriesExceededHandler CaloriesExceeded;
 
+        public double TotalCalorieCalculation()
+        {
+            foreach (Ingredient ingredient in recipeIngredients)
+            {
+                totalCalories = ingredient.getCalories() + totalCalories;
+            }
+            return totalCalories;
+        }
+
+        /// <summary>
+        /// resets recipe to original values
+        /// </summary>
         public void ResetRecipe()
         {
             foreach (Ingredient ingredient in recipeIngredients)
@@ -62,7 +74,7 @@ namespace PROGPOE.Classes
         /// <param name="totalCalories">Total Calories</param>
         /// <param name="ingredients">List of Ingredients</param>
         /// <param name="steps">List of Steps</param>
-        public Recipe(string name, int totalCalories, List<Ingredient> recipeIngredients, List<Step> recipeSteps)
+        public Recipe(string name, double totalCalories, List<Ingredient> recipeIngredients, List<Step> recipeSteps)
         {
             this.name = name;
             this.totalCalories = totalCalories;
@@ -163,7 +175,7 @@ namespace PROGPOE.Classes
         /// Sets total amount of calories in a recipe
         /// </summary>
         /// <param totalCalories="new_totalCalories"> total calories </param>
-        public void setTotalCalories(int new_totalCalories)
+        public void setTotalCalories(double new_totalCalories)
         {
             if (new_totalCalories > 300)
             {

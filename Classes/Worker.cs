@@ -11,7 +11,6 @@ namespace PROGPOE.Classes
     {
         
         static int ingredient_counter;
-        static int totalCalories = 0;
         List<Ingredient> ingredients = new List<Ingredient>(); //list of ingredients
         static 
         List<Recipe> recipes = new List<Recipe>();
@@ -106,6 +105,7 @@ namespace PROGPOE.Classes
             string stringInput = string.Empty;
             string name = string.Empty;
             int intInput = 0;
+            double totalCalories = 0;
             Console.WriteLine("\n-------------------------------");
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.WriteLine("Create Recipe");
@@ -132,14 +132,15 @@ namespace PROGPOE.Classes
             List<Ingredient> ingredients = AddIngredients(intInput);
             List<Step> steps = AddSteps();
             
-            Recipe recipe = new Recipe(name, totalCalories, ingredients, steps);
+            Recipe recipe = new Recipe(name, 0, ingredients, steps);
+            totalCalories = recipe.TotalCalorieCalculation();
             recipes.Add(recipe);
             
             recipe.CaloriesExceeded += Recipe_CaloriesExceeded;
             recipe.setTotalCalories(totalCalories);
+            IEnumerable<Recipe> orderedByName = recipes.OrderBy(r => r.name);
 
-            totalCalories = 0;
-                    
+
         }
 
         private static void Recipe_CaloriesExceeded(string recipeName, double totalCalories)
@@ -157,17 +158,28 @@ namespace PROGPOE.Classes
             List<Step> steps = new List<Step>(); //list of step descriptions
             int intInput = 0;
             string userInput = string.Empty;
-            Console.WriteLine("\n------------------------");
-            Console.WriteLine("How many steps would you like to add?"); //prompts user for how many steps they would want
-            Console.WriteLine("-------------------------------");
-            try 
-            { 
-            intInput = int.Parse(Console.ReadLine());
-            }
-            catch(Exception e) 
+            bool validCheck = false;
+            do
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine("\n------------------------");
+                Console.WriteLine("How many steps would you like to add?"); //prompts user for how many steps they would want
+                Console.WriteLine("-------------------------------");
+                try
+                {
+                    intInput = int.Parse(Console.ReadLine());
+                    if (intInput > 0) 
+                    {
+                        validCheck = true;
+                        break;
+                    }
+                    Console.WriteLine("Incorrect value");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
+            while (!validCheck);
 
             //adds a step and saves the details in steps[]
             for (int i = 0; i < intInput; i++)
@@ -193,6 +205,7 @@ namespace PROGPOE.Classes
             int food_group = 0;
             int calories = 0;
             string stringInput = string.Empty; //gets user Input in string
+            bool validCheck = false;
 
             //for each ingredient get its name, the unit of measurement and quantity of ingredient
             for (int i = 0; i < ingredientAmount; i++)
@@ -208,98 +221,128 @@ namespace PROGPOE.Classes
                 ingredient.setName(ingredientName);
 
                 //gets ingredient measurement unit
-                Console.WriteLine("-------------------------------");
-                Console.BackgroundColor = ConsoleColor.Blue;
-                Console.WriteLine("Enter Ingredient Measurement Unit");
-                Console.BackgroundColor = ConsoleColor.Black;
-                Console.WriteLine("1. Grams");
-                Console.WriteLine("2. Kilograms");
-                Console.WriteLine("3. Teaspoons");
-                Console.WriteLine("4. Tablespoons");
-                Console.WriteLine("5. Cups");
-                Console.WriteLine("-------------------------------");
-                stringInput = Console.ReadLine();
-
-                try
+                do
                 {
-                    measurementUnit = int.Parse(stringInput);
-                    if (measurementUnit > 5)
+                    Console.WriteLine("-------------------------------");
+                    Console.BackgroundColor = ConsoleColor.Blue;
+                    Console.WriteLine("Enter Ingredient Measurement Unit");
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    Console.WriteLine("1. Grams");
+                    Console.WriteLine("2. Kilograms");
+                    Console.WriteLine("3. Teaspoons");
+                    Console.WriteLine("4. Tablespoons");
+                    Console.WriteLine("5. Cups");
+                    Console.WriteLine("-------------------------------");
+                    stringInput = Console.ReadLine();
+
+                    try
                     {
+                        measurementUnit = int.Parse(stringInput);
+                        if (measurementUnit <= 5)
+                        {
+                            validCheck = true;
+                            break;
+                        }
                         Console.WriteLine("Incorrect value");
                     }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                while (!validCheck);
+                validCheck = false;
                 ingredient.setMeasurementUnit(measurementUnit);
 
                 //gets quantity of ingredients
-                Console.WriteLine("Enter Quantity of ingredient");
-                stringInput = Console.ReadLine();
+                do {
+                    Console.WriteLine("Enter Quantity of ingredient");
+                    stringInput = Console.ReadLine();
 
-                try
-                {
-                    ingredientQuantity = Convert.ToDouble(stringInput);
+                    try
+                    {
+                        ingredientQuantity = Convert.ToDouble(stringInput);
+                        if (ingredientQuantity <= 7)
+                        {
+                            validCheck =true;
+                            break;
+                        }
+                        Console.WriteLine("Incorrect value");
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                while(!validCheck);
+                validCheck = false;
                 ingredient.setQuantity(ingredientQuantity);
                 ingredient.setOriginalQuantity();
 
                 //gets ingredient food group
-                Console.WriteLine("-------------------------------");
-                Console.BackgroundColor = ConsoleColor.Blue;
-                Console.WriteLine("Enter Ingredient Measurement Unit");
-                Console.BackgroundColor = ConsoleColor.Black;
-                Console.WriteLine("1. Starchy");
-                Console.WriteLine("2. Vegetables and fruits");
-                Console.WriteLine("3. Dry beans, peas, lentils and soya");
-                Console.WriteLine("4. Chicken, fish, meat and eggs");
-                Console.WriteLine("5. Milk and dairy products");
-                Console.WriteLine("6. Fats and oil");
-                Console.WriteLine("7. Water");
-                Console.WriteLine("-------------------------------");
-                stringInput = Console.ReadLine();
+                do {
+                    Console.WriteLine("-------------------------------");
+                    Console.BackgroundColor = ConsoleColor.Blue;
+                    Console.WriteLine("Enter Ingredient Food Group");
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    Console.WriteLine("1. Starchy");
+                    Console.WriteLine("2. Vegetables and fruits");
+                    Console.WriteLine("3. Dry beans, peas, lentils and soya");
+                    Console.WriteLine("4. Chicken, fish, meat and eggs");
+                    Console.WriteLine("5. Milk and dairy products");
+                    Console.WriteLine("6. Fats and oil");
+                    Console.WriteLine("7. Water");
+                    Console.WriteLine("-------------------------------");
+                    stringInput = Console.ReadLine();
 
-                try
-                {
-                    food_group = int.Parse(stringInput);
-                    if (measurementUnit > 7)
+                    try
                     {
+                        food_group = int.Parse(stringInput);
+                        if (food_group <= 7)
+                        {
+                            validCheck = true;
+                            break;
+                        }
                         Console.WriteLine("Incorrect value");
                     }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-                ingredient.setFoodGroup(food_group); 
-
-                //gets calories
-                Console.WriteLine("-------------------------------");
-                Console.WriteLine("Calories");
-                Console.WriteLine("-------------------------------");
-                stringInput = Console.ReadLine();
-
-                try
-                {
-                    calories = int.Parse(stringInput);
-                    if (measurementUnit < 0)
+                    catch (Exception e)
                     {
-                        Console.WriteLine("Negative calories? Seriously...");
+                        Console.WriteLine(e.Message);
                     }
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
+                while (!validCheck);
+                validCheck = false;
+                ingredient.setFoodGroup(food_group);
+
+                //gets calories
+                do {
+                    Console.WriteLine("-------------------------------");
+                    Console.WriteLine("Calories");
+                    Console.WriteLine("-------------------------------");
+                    stringInput = Console.ReadLine();
+
+                    try
+                    {
+                        calories = int.Parse(stringInput);
+                        if (calories < 0)
+                        {
+                            Console.WriteLine("Negative calories? Seriously...");
+                        }
+                        else if (calories > 0)
+                        {
+                            validCheck = true;
+                            break;
+                        }
+                        Console.WriteLine("Incorrect value");
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
                 }
+                while (!validCheck);
                 ingredient.setCalories(calories);
                 ingredient.setOriginalCalories();
-                totalCalories = totalCalories + calories;
-
                 //creates ingredient object and adds it to list
                 ingredients.Add(new Ingredient(ingredient.getName(), ingredient.getQuantity(), ingredient.getMeasurementUnit(), ingredient.getFoodGroup(), ingredient.getCalories()));                
             }
@@ -351,6 +394,7 @@ namespace PROGPOE.Classes
                 }
                 while(finish);
                 recipe.CaloriesExceeded += Recipe_CaloriesExceeded;
+                recipe.setTotalCalories(recipe.getTotalCalories());
             }
         }
 
