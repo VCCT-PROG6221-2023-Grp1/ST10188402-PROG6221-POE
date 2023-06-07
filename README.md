@@ -23,6 +23,12 @@ This application creates recipes by acquiring the steps and ingredients(name of 
       
   -5. Exit
       \n exits application
+      
+## Software Requirements
+
+This application was developed in C# on the .NET Framework v4.8
+
+To view the code for this application you can use an application such as Microsoft Visual Studio
 
 ## License
 MIT
