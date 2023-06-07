@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PROGPOE", "PROGPOE.csproj", "{B0841F3C-7D68-482D-A42C-32D0B1D2CF5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgPOE.nUnitTests", "..\ProgPOE.nUnitTests\ProgPOE.nUnitTests.csproj", "{941E76DF-65C1-4DEF-BD78-80BFD785B724}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgPOE.nUnitTests", "ProgPOE.nUnitTests\ProgPOE.nUnitTests.csproj", "{0AD89735-165F-451E-9462-7E953690358B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{B0841F3C-7D68-482D-A42C-32D0B1D2CF5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0841F3C-7D68-482D-A42C-32D0B1D2CF5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0841F3C-7D68-482D-A42C-32D0B1D2CF5D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{941E76DF-65C1-4DEF-BD78-80BFD785B724}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{941E76DF-65C1-4DEF-BD78-80BFD785B724}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{941E76DF-65C1-4DEF-BD78-80BFD785B724}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{941E76DF-65C1-4DEF-BD78-80BFD785B724}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AD89735-165F-451E-9462-7E953690358B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AD89735-165F-451E-9462-7E953690358B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AD89735-165F-451E-9462-7E953690358B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AD89735-165F-451E-9462-7E953690358B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

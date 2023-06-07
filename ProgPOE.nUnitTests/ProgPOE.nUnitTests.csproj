@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PROGPOE\PROGPOE.csproj" />
+    <ProjectReference Include="..\PROGPOE.csproj" />
   </ItemGroup>
 
 </Project>
