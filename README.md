@@ -56,6 +56,8 @@ This application creates recipes by acquiring the steps and ingredients(name of 
 
 -The application has the what are food groups option now
 
+-The application is now amost completely in white and black
+
       
 ## Software Requirements
 
