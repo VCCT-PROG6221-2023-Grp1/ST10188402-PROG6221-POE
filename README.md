@@ -3,11 +3,11 @@
 This application creates recipes by acquiring the steps and ingredients(name of ingredient, unit of measurement of ingredient and quantity of ingredient) needed for said recipe from the user and compiling that together into lists
 
 ## How to use
--Upon launching the application the user will be prompted with the menu with the following 8 options:
+-Upon launching the application the user will be prompted with the menu with the following 6 options:
 
-  -1. Show Recipe
+  -1. Create Recipe
       
-      - This will ask the user to enter the name of the recipe and then print the recipe details
+      - When clicked a page will pop up allowing the user to fill out the details of a recipe
       
   -2. Scale Recipe
       
@@ -19,44 +19,22 @@ This application creates recipes by acquiring the steps and ingredients(name of 
       
       - This will ask for the user to enter the name of the recipe they want to reset
       - This will then resets the quantities and calories of ingredients as well as the total calories back to what they were set to originally 
-  
-  -4. Clear Recipe
+
       
-      - This will ask for the user to enter the name of the recipe they wish to delete
-      - Then it asks the user if they are sure to clear recipe data and if user enters yes option all recipe data is cleared and the application will then remove the recipe
-      
-  -5. Create Recipe
-      
-      - This will create a recipe by asking for the name, amount of ingredients, ingredient name, measurement unit, quantity of that measurement of the ingredient, food group and calories of the ingredient and the steps and their description
-      -this information is then saved in memory
-      
-  -6. Show All Recipes
+  -4. Show All Recipes
       
       -Shows all created recipes in alphabetical order
   
-  -7. What are food groups
+  -5. Filter All Recipe
       
-      - Provides a link to learn about food groups
-      
-  -8. Exit
-      
-      - exits application
+      - Shows All Recipes and you can filter through them
       
 ## What is Different
 
--The application no longer prompts the user for recipe creation immediately when opened
+-The application no longer a commmand program and now is WPF
 
--The application can save multiple recipes
+- Can now filter
 
--The application now saves food groups and calories of ingredients
-
--The application now saves the total calories of a recipe
-
--The application now prompts user when total calories exceeds 300
-
--The application has the what are food groups option now
-
--The application is now amost completely in white and black
 
       
 ## Software Requirements
