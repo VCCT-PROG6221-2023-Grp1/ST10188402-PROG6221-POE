@@ -1,0 +1,44 @@
+﻿<Window x:Class="PART3.ScaleRecipeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Scale Recipe" Height="450" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Search Recipe:" Margin="10" VerticalAlignment="Center"/>
+        <TextBox x:Name="txtSearchRecipe" Grid.Row="0" Margin="120,10,10,10" VerticalAlignment="Center"/>
+        <Button x:Name="btnSearchRecipe" Content="Search" Grid.Row="0" HorizontalAlignment="Right" Margin="0,10,10,10" VerticalAlignment="Center" Click="btnSearchRecipe_Click"/>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10">
+            <Label Content="Original Recipe Name:" Margin="0,0,10,0" VerticalAlignment="Center"/>
+            <TextBlock x:Name="txtOriginalRecipeName" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
+            <Label Content="Original Total Calories:" Margin="0,0,10,0" VerticalAlignment="Center"/>
+            <TextBlock x:Name="txtOriginalTotalCalories" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Margin="10">
+            <Label Content="Scale Factor:"/>
+            <ComboBox x:Name="cmbScaleFactor" Width="100" Margin="0,5,0,0">
+                <ComboBoxItem Content="Halving"/>
+                <ComboBoxItem Content="Doubling"/>
+                <ComboBoxItem Content="Tripling"/>
+            </ComboBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Margin="10">
+            <Button x:Name="btnScaleRecipe" Content="Scale Recipe" Click="btnScaleRecipe_Click"/>
+            <Button x:Name="btnCancel" Content="Cancel" Margin="10,0,0,0" Click="btnCancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

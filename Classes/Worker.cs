@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace PROGPOE.Classes
 {
@@ -27,7 +28,6 @@ namespace PROGPOE.Classes
             {
                 string stringInput = string.Empty; //declare variable for user input in string
                 int intInput = 0; //declare variable for user input to converted to int
-
                 //Displays menu and stores user input
                 Console.BackgroundColor = ConsoleColor.White;
                 Console.ForegroundColor = ConsoleColor.Black;

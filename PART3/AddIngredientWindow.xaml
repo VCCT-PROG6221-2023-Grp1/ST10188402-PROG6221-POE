@@ -1,0 +1,53 @@
+﻿<Window x:Class="PART3.AddIngredientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:PROGPOE.Classes"
+        Title="Add Ingredient" Height="250" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Ingredient Name:" Grid.Row="0"/>
+        <TextBox x:Name="txtName" Grid.Row="0" Grid.Column="1" Margin="5"/>
+
+        <TextBlock Text="Quantity:" Grid.Row="1"/>
+        <TextBox x:Name="txtQuantity" Grid.Row="1" Grid.Column="1" Margin="5"/>
+
+        <TextBlock Text="Measurement Unit:" Grid.Row="2"/>
+        <ComboBox x:Name="cmbMeasurementUnits" Grid.Row="2" Grid.Column="1" Margin="5">
+            <ComboBoxItem Content="grams"/>
+            <ComboBoxItem Content="kilograms"/>
+            <ComboBoxItem Content="teaspoons"/>
+            <ComboBoxItem Content="tablespoons"/>
+            <ComboBoxItem Content="cups"/>
+        </ComboBox>
+
+        <TextBlock Text="Food Group:" Grid.Row="3"/>
+        <ComboBox x:Name="cmbFoodGroups" Grid.Row="3" Grid.Column="1" Margin="5">
+            <ComboBoxItem Content="Starchy"/>
+            <ComboBoxItem Content="Vegetables and fruits"/>
+            <ComboBoxItem Content="Dry beans, peas, lentils and soya"/>
+            <ComboBoxItem Content="Chicken, fish, meat and eggs"/>
+            <ComboBoxItem Content="Milk and dairy products"/>
+            <ComboBoxItem Content="Fats and oil"/>
+            <ComboBoxItem Content="Water"/>
+        </ComboBox>
+
+        <TextBlock Text="Calories:" Grid.Row="4"/>
+        <TextBox x:Name="txtCalories" Grid.Row="4" Grid.Column="1" Margin="5"/>
+
+        <Button x:Name="btnAddIngredient" Content="Add Ingredient" Grid.Row="5" Grid.ColumnSpan="2" Margin="5"
+                Click="btnAddIngredient_Click"/>
+    </Grid>
+</Window>

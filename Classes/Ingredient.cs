@@ -129,7 +129,7 @@ namespace PROGPOE.Classes
         /// <param name="new_measurement_unit"> number entered to decide what unit</param>
         public void setMeasurementUnit(int new_measurement_unit)
         {
-            measurement_unit = measurement_units[new_measurement_unit-1]; 
+            measurement_unit = measurement_units[new_measurement_unit]; 
         }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace PROGPOE.Classes
         /// <param foodGroup="new_foodGroup"> number entered to decide what unit</param>
         public void setFoodGroup(int new_foodGroup)
         {
-            foodGroup = food_groups[new_foodGroup - 1];
+            foodGroup = food_groups[new_foodGroup];
         }
     }
 }

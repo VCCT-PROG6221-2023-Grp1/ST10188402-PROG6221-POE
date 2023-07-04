@@ -1,0 +1,42 @@
+﻿<Window x:Class="PART3.CreateRecipeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:PART3"
+        Title="Create Recipe" Height="450" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Recipe Name:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBox x:Name="txtRecipeName" Grid.Row="0" Grid.Column="1" Margin="5" Width="200"/>
+
+        <GroupBox Header="Ingredients" Grid.Row="1" Margin="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Button x:Name="btnAddIngredient" Content="Add Ingredient" Click="btnAddIngredient_Click" Margin="5"/>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="Steps" Grid.Row="2" Margin="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Button x:Name="btnAddStep" Content="Add Step" Click="btnAddStep_Click" Margin="5"/>
+            </Grid>
+        </GroupBox>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+            <Button x:Name="btnCancel" Content="Cancel" Click="btnCancel_Click" Margin="5"/>
+            <Button x:Name="btnCreateRecipe" Content="Create Recipe" Click="btnCreateRecipe_Click" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</Window>

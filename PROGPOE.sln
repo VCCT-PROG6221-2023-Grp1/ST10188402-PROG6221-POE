@@ -5,7 +5,9 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PROGPOE", "PROGPOE.csproj", "{B0841F3C-7D68-482D-A42C-32D0B1D2CF5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgPOE.nUnitTests", "ProgPOE.nUnitTests\ProgPOE.nUnitTests.csproj", "{0AD89735-165F-451E-9462-7E953690358B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgPOE.nUnitTests", "ProgPOE.nUnitTests\ProgPOE.nUnitTests.csproj", "{0AD89735-165F-451E-9462-7E953690358B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PART3", "PART3\PART3.csproj", "{16699B76-071E-418B-A663-F69B4DB91D17}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{0AD89735-165F-451E-9462-7E953690358B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AD89735-165F-451E-9462-7E953690358B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AD89735-165F-451E-9462-7E953690358B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16699B76-071E-418B-A663-F69B4DB91D17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16699B76-071E-418B-A663-F69B4DB91D17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16699B76-071E-418B-A663-F69B4DB91D17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16699B76-071E-418B-A663-F69B4DB91D17}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

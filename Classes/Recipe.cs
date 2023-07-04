@@ -194,6 +194,26 @@ namespace PROGPOE.Classes
         {
             return totalCalories;
         }
+
+        public void AddIngredient(Ingredient ingredient)
+        {
+            recipeIngredients.Add(ingredient);
+        }
+
+        public void RemoveIngredient(Ingredient ingredient)
+        {
+            recipeIngredients.Remove(ingredient);
+        }
+
+        public void AddStep(Step step)
+        {
+            recipeSteps.Add(step);
+        }
+
+        public void RemoveStep(Step step)
+        {
+            recipeSteps.Remove(step);
+        }
     }
 }
 //______________________________0---------------------------> End of File <---------------------------0______________________________
